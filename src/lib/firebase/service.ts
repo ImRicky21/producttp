@@ -40,8 +40,7 @@ export async function signUp(
 ) {
   const q = query(
     collection(firestore, "users"),
-    where("email", "==", userData.email),
-    where("username", "==", userData.username)
+    where("email", "==", userData.email)
   );
 
   const snapshot = await getDocs(q);
