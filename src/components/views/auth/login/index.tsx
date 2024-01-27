@@ -1,4 +1,5 @@
 import { signIn } from "next-auth/react";
+import { redirect } from "next/dist/server/api-utils";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 import Swal from "sweetalert2";
@@ -69,6 +70,15 @@ const LoginView = () => {
             {isLoading ? "Loading..." : "Log In"}
           </button>
         </form>
+      </div>
+      <hr className="border-2" />
+      <div>
+        <button
+          className="bg-sky-400"
+          onClick={() => signIn("google", { callbackUrl, redirect: false })}
+        >
+          login with google
+        </button>
       </div>
     </div>
   );
