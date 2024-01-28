@@ -1,3 +1,5 @@
+import Button from "@/components/ui/button";
+import Input from "@/components/ui/input";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 import Swal from "sweetalert2";
@@ -49,49 +51,27 @@ const RegisterView = () => {
           onSubmit={handleSubmit}
           className="item-center grid grid-cols-1 gap-5"
         >
-          <div className="grid grid-cols-1">
-            <label htmlFor="email">email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              className="border-2 focus:border-cyan-400 focus:outline-none rounded-md p-1 "
-            />
-          </div>
-          <div className="grid grid-cols-1">
-            <label htmlFor="fullname">fullname</label>
-            <input
-              type="text"
-              name="fullname"
-              id="fullname"
-              className="border-2 focus:border-cyan-400 focus:outline-none rounded-md p-1 "
-            />
-          </div>
-          <div className="grid grid-cols-1">
-            <label htmlFor="phone">phone</label>
-            <input
-              type="text"
-              name="phone"
-              id="phone"
-              className="border-2 focus:border-cyan-400 focus:outline-none rounded-md p-1 "
-            />
-          </div>
-          <div className="grid grid-cols-1">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              className="border-2 focus:border-cyan-400 focus:outline-none rounded-md p-1 "
-            />
-          </div>
-          <button
-            type="submit"
-            className="bg-cyan-300 rounded-md p-1 hover:bg-cyan-500 transition ease-in-out"
-          >
+          <Input label="email" name="email" type="email" placeholder="Email" />
+          <Input
+            label="fullname"
+            name="fullname"
+            type="fullname"
+            placeholder="Fullname"
+          />
+          <Input label="phone" name="phone" type="phone" placeholder="Phone" />
+          <Input
+            label="password"
+            name="password"
+            type="password"
+            placeholder="Password"
+          />
+          <Button type="submit" onClick={() => handleSubmit}>
             {isLoading ? "Loading..." : "Register"}
-          </button>
+          </Button>
         </form>
+      </div>
+      <div>
+        <a href="login">Log in</a>
       </div>
     </div>
   );

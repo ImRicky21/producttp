@@ -1,6 +1,6 @@
 import nextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { loginGoogel, signIn } from "@/lib/firebase/service";
+import { loginGoogel, signIn } from "@/services/auth";
 import { compare } from "bcrypt";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";

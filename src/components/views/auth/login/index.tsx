@@ -1,3 +1,5 @@
+import Button from "@/components/ui/button";
+import Input from "@/components/ui/input";
 import { signIn } from "next-auth/react";
 import { redirect } from "next/dist/server/api-utils";
 import { useRouter } from "next/router";
@@ -38,47 +40,35 @@ const LoginView = () => {
 
   return (
     <div className="flex flex-col gap-4 items-center p-4 m-6 border-2 ">
-      <h1>Register</h1>
+      <h1>Login</h1>
       {error && <p className="text-red-500">{error}</p>}
       <div>
         <form
           onSubmit={handleSubmit}
           className="item-center grid grid-cols-1 gap-5"
         >
-          <div className="grid grid-cols-1">
-            <label htmlFor="email">email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              className="border-2 focus:border-cyan-400 focus:outline-none rounded-md p-1 "
-            />
-          </div>
-          <div className="grid grid-cols-1">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              className="border-2 focus:border-cyan-400 focus:outline-none rounded-md p-1 "
-            />
-          </div>
-          <button
+          <Input label="email" name="email" type="email" />
+          <Input label="password" name="password" type="password" />
+          <Button
             type="submit"
-            className="bg-cyan-300 rounded-md p-1 hover:bg-cyan-500 transition ease-in-out"
+            onClick={() => push(callbackUrl)}
+            className="bg-sky-400 p-2 rounded-md"
           >
-            {isLoading ? "Loading..." : "Log In"}
-          </button>
+            {isLoading ? "Loading..." : "Login"}
+          </Button>
         </form>
       </div>
       <hr className="border-2" />
       <div>
-        <button
-          className="bg-sky-400"
+        <Button
+          type="button"
           onClick={() => signIn("google", { callbackUrl, redirect: false })}
         >
           login with google
-        </button>
+        </Button>
+      </div>
+      <div>
+        <a href="register">register</a>
       </div>
     </div>
   );
