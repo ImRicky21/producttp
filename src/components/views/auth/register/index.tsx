@@ -1,5 +1,7 @@
+import AuthLayout from "@/components/layout/authLayout";
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
+import authService from "@/services/auth/index";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 import Swal from "sweetalert2";
@@ -14,6 +16,17 @@ const RegisterView = () => {
     setLoading(true);
     setError("");
     const form = event.target as HTMLFormElement;
+
+    if (
+      !form.email.value ||
+      !form.fullname.value ||
+      !form.phone.value ||
+      !form.password.value
+    ) {
+      setLoading(false);
+      Swal.fire("error", "Please fill all the fields", "error");
+      return;
+    }
     const data = {
       email: form.email.value,
       fullname: form.fullname.value,
@@ -21,13 +34,7 @@ const RegisterView = () => {
       password: form.password.value,
     };
 
-    const result = await fetch("/api/user/register", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const result = await authService.registerAccount(data);
 
     if (result.status === 200) {
       form.reset();
@@ -43,9 +50,7 @@ const RegisterView = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4 items-center p-4 m-6 border-2 ">
-      <h1>Register</h1>
-      {error && <p className="text-red-500">{error}</p>}
+    <AuthLayout title="Register" link="/auth/login" linkText="login">
       <div>
         <form
           onSubmit={handleSubmit}
@@ -70,10 +75,7 @@ const RegisterView = () => {
           </Button>
         </form>
       </div>
-      <div>
-        <a href="login">Log in</a>
-      </div>
-    </div>
+    </AuthLayout>
   );
 };
 export default RegisterView;

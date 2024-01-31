@@ -1,3 +1,4 @@
+import AuthLayout from "@/components/layout/authLayout";
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { signIn } from "next-auth/react";
@@ -39,10 +40,13 @@ const LoginView = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4 items-center p-4 m-6 border-2 ">
-      <h1>Login</h1>
-      {error && <p className="text-red-500">{error}</p>}
-      <div>
+    <AuthLayout
+      error={error}
+      title="Login"
+      link="/auth/register"
+      linkText="register"
+    >
+      <div className="item-center grid-cols-1 justify-center">
         <form
           onSubmit={handleSubmit}
           className="item-center grid grid-cols-1 gap-5"
@@ -67,10 +71,7 @@ const LoginView = () => {
           login with google
         </Button>
       </div>
-      <div>
-        <a href="register">register</a>
-      </div>
-    </div>
+    </AuthLayout>
   );
 };
 export default LoginView;
