@@ -3,18 +3,24 @@ type propsTypes = {
   name: string;
   type: string;
   placeholder?: string;
+  defaultValue?: string;
+  disable?: boolean;
+  className?: string;
 };
 function Input(props: propsTypes) {
-  const { label, name, type, placeholder } = props;
+  const { label, name, type, placeholder, defaultValue, disable, className } =
+    props;
   return (
-    <div className="grid grid-cols-1">
+    <div className="grid grid-cols-1 gap-2">
       {label && <label htmlFor={name}>{label}</label>}
       <input
         type={type}
         name={name}
         id={name}
         placeholder={placeholder}
-        className="border-2 focus:border-cyan-400 focus:outline-none rounded-md p-1 "
+        defaultValue={defaultValue}
+        disabled={disable}
+        className={`border-2 focus:border-cyan-400 focus:outline-none rounded-md p-1 ${className}`}
       />
     </div>
   );

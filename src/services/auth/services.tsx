@@ -40,7 +40,13 @@ export async function signIn(email: string) {
 }
 
 export async function loginGoogel(
-  data: { email: string; role?: string },
+  data: {
+    email: string;
+    password?: string;
+    role?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+  },
   callback: Function
 ) {
   const user = await retrieveDataByFeild("users", "email", data.email);
@@ -49,6 +55,9 @@ export async function loginGoogel(
     callback(user[0]);
   } else {
     data.role = "member";
+    data.createdAt = new Date();
+    data.updatedAt = new Date();
+    data.password = "";
     addData("users", data, (result: boolean) => {
       if (result) {
         callback(data);

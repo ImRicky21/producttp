@@ -29,13 +29,28 @@ const LoginView = () => {
         setLoading(false);
         form.reset();
         push(callbackUrl);
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: "You have successfully logged in!",
+        });
       } else {
         setLoading(false);
         setError("email or password incorrect");
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text: "Email or password incorrect",
+        });
       }
     } catch (error) {
       setLoading(false);
       setError("email or password incorrect");
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: "Email or password incorrect",
+      });
     }
   };
 
