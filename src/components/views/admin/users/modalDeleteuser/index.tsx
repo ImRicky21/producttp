@@ -1,24 +1,36 @@
 import Button from "@/components/ui/button";
 import { Modal } from "@/components/ui/modals";
 import userService from "@/services/user";
+import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 
 function ModalDeleteUser(props: any) {
   const { deletedUser, setDeletedUser, setUsersData } = props;
+  const session: any = useSession();
+
   const handleDelete = async () => {
-    userService.deleteUser(deletedUser.id).then((result) => {
-      if (result.status !== 200) {
-        Swal.fire({
-          icon: "error",
-          text: "User tidak dapat dihapus",
-        });
-      } else {
-        Swal.fire({
-          icon: "success",
-          text: `User ${deletedUser.fullname} sudah di hapus`,
-        });
-      }
-    });
+    userService
+      .deleteUser(deletedUser.id, session.data?.accessToken)
+      .then((result) => {
+        try {
+          if (result.status !== 200) {
+            Swal.fire({
+              icon: "error",
+              text: "User tidak dapat dihapus",
+            });
+          } else {
+            Swal.fire({
+              icon: "success",
+              text: `User ${deletedUser.fullname} sudah di hapus`,
+            });
+          }
+        } catch {
+          Swal.fire({
+            icon: "error",
+            text: "User tidak dapat dihapus",
+          });
+        }
+      });
     const { data } = await userService.getAllUser();
     setUsersData(data.data);
   };
