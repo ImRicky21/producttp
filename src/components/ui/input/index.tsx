@@ -6,17 +6,26 @@ type propsTypes = {
   defaultValue?: string;
   disable?: boolean;
   className?: string;
+  id?: string;
 };
 function Input(props: propsTypes) {
-  const { label, name, type, placeholder, defaultValue, disable, className } =
-    props;
+  const {
+    label,
+    name,
+    type,
+    placeholder,
+    defaultValue,
+    disable,
+    className,
+    id,
+  } = props;
   return (
     <div className="grid grid-cols-1 gap-2">
       {label && <label htmlFor={name}>{label}</label>}
       <input
         type={type}
         name={name}
-        id={name}
+        id={id}
         placeholder={placeholder}
         defaultValue={defaultValue}
         disabled={disable}

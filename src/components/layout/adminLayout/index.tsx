@@ -10,7 +10,7 @@ const listSideBar = [
     url: "/admin",
     icon: "bxs-dashboard",
   },
-  { title: "Products", url: "/admin/product", icon: "bxs-box" },
+  { title: "News", url: "/admin/news", icon: "bxs-box" },
   { title: "Users", url: "/admin/users", icon: "bxs-box" },
 ];
 function AdminLayout(props: Propstypes) {
