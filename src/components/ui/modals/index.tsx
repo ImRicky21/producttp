@@ -26,10 +26,7 @@ export function Modal(props: PropsTypes) {
   }, [onClose]);
   return (
     <div className={className}>
-      <div
-        className="flex flex-col justify-center items-center border-yellow-200"
-        ref={ref}
-      >
+      <div className="flex flex-col justify-center items-center" ref={ref}>
         {children}
       </div>
     </div>

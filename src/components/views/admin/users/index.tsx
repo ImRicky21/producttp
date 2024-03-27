@@ -2,16 +2,17 @@ import AdminLayout from "@/components/layout/adminLayout";
 import Button from "@/components/ui/button";
 import { use, useEffect, useState } from "react";
 import ModalUpdateUser from "./modalUpdateUser";
-import userService from "@/services/user";
 import ModalDeleteUser from "./modalDeleteuser";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { Users } from "@/types/users.type";
 
 type PropsTypes = {
-  users: any;
+  users: Users[];
 };
 
 function UserAdminView(props: PropsTypes) {
   const { users } = props;
-  const [usersData, setUsersData] = useState([]);
+  const [usersData, setUsersData] = useState<Users[]>([]);
   const [updatedUser, setUpdatedUser] = useState<any>({});
   const [deletedUser, setDeletedUser] = useState<any>({});
   useEffect(() => {
@@ -24,6 +25,7 @@ function UserAdminView(props: PropsTypes) {
           <div className="grid grid-cols-1 gap-5 w-full p-4 px-6">
             <h2 className="text-xl text-center font-bold">Admin User Page</h2>
           </div>
+
           <table className="table-auto p-5 w-full text-center">
             <thead>
               <tr className="border border-slate-600">
@@ -46,20 +48,20 @@ function UserAdminView(props: PropsTypes) {
                   <td className=" border border-slate-600">{user.phone}</td>
                   <td className=" border border-slate-600">{user.role}</td>
                   <td className="border border-slate-600 ">
-                    <div className="grid grid-cols-2 gap-4 m-3">
+                    <div className="grid grid-cols-2 gap-4 m-3 text-center justify-items-center">
                       <Button
-                        className="bg-teal-200 rounded-md"
+                        className=""
                         type="button"
                         onClick={() => setUpdatedUser(user)}
                       >
-                        Update
+                        <FaEdit className="text-sky-600 text-3xl" />
                       </Button>
                       <Button
-                        className="bg-red-400 rounded-md"
+                        className=""
                         type="button"
                         onClick={() => setDeletedUser(user)}
                       >
-                        Delete
+                        <FaTrashAlt className="text-red-700 text-3xl" />
                       </Button>
                     </div>
                   </td>

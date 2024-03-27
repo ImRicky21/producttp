@@ -14,7 +14,7 @@ function Sidebar(props: Propstypes) {
   const { lists } = props;
   const { pathname } = useRouter();
   return (
-    <div className="flex flex-col justify-between font-medium h-screen w-64 bg-black text-white ">
+    <div className="flex flex-col justify-between font-medium min-h-screen w-64 bg-black text-white  ">
       <div className="flex flex-col gap-4 w-full py-4 ">
         <h1 className="text-center text-2xl font-bold top-0 ">Admin Panel</h1>
         {lists.map((list, index) => (
@@ -26,18 +26,19 @@ function Sidebar(props: Propstypes) {
             } `}
           >
             <i className={`bx ${list.icon}`} />
+
             <h2>{list.title}</h2>
           </Link>
         ))}
-      </div>
-      <div className="p-7 text-black ">
-        <Button
-          type="button"
-          onClick={() => signOut()}
-          className="bg-white px-5 rounded-lg hover:bg-slate-300 font-semibold w-full"
-        >
-          Log out
-        </Button>
+        <div className="p-7 text-black ">
+          <Button
+            type="button"
+            onClick={() => signOut()}
+            className="bg-white px-5 rounded-lg hover:bg-slate-300 font-semibold w-full"
+          >
+            Log out
+          </Button>
+        </div>
       </div>
     </div>
   );

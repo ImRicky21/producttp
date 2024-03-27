@@ -58,11 +58,11 @@ function ModalUpdateUser(props: any) {
       onClose={() => setUpdatedUser({})}
       className="w-screen h-screen flex justify-center align-middle z-50 fixed top-0 backdrop-blur-md"
     >
-      <h1 className="text-center bg-teal-300">Update</h1>
       <form
         onSubmit={handleUpdateUser}
-        className="bg-orange-500 p-4 rounded-lg"
+        className="bg-teal-500  h-auto rounded-lg m-5 p-10 w-96"
       >
+        <h1 className="text-center text-2xl">Update</h1>
         <Input
           label="email"
           name="email"
@@ -103,7 +103,7 @@ function ModalUpdateUser(props: any) {
           ]}
         />
         <Button type="submit" className="bg-yellow-200 mt-3 p-2 rounded-md">
-          Update
+          {isLodaing ? "Loading..." : "Update"}
         </Button>
       </form>
     </Modal>

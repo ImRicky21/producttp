@@ -1,16 +1,17 @@
 import Button from "@/components/ui/button";
 import { Modal } from "@/components/ui/modals";
+import productService from "@/services/product";
 import userService from "@/services/user";
 import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 
-function ModalDeleteUser(props: any) {
-  const { deletedUser, setDeletedUser, setUsersData } = props;
+function ModalDeleteProduct(props: any) {
+  const { deletedProduct, setDeletedProduct, setProductsData } = props;
   const session: any = useSession();
 
   const handleDelete = async () => {
-    userService
-      .deleteUser(deletedUser.id, session.data?.accessToken)
+    productService
+      .deleteProduct(deletedProduct.id, session.data?.accessToken)
       .then((result) => {
         try {
           if (result.status !== 200) {
@@ -21,7 +22,7 @@ function ModalDeleteUser(props: any) {
           } else {
             Swal.fire({
               icon: "success",
-              text: `User ${deletedUser.fullname} sudah di hapus`,
+              text: ` sudah di hapus`,
             });
           }
         } catch {
@@ -31,12 +32,12 @@ function ModalDeleteUser(props: any) {
           });
         }
       });
-    const { data } = await userService.getAllUser();
-    setUsersData(data.data);
+    const { data } = await productService.getAllProduct();
+    setProductsData(data.data);
   };
   return (
     <Modal
-      onClose={() => setDeletedUser({})}
+      onClose={() => setDeletedProduct({})}
       className="w-screen h-screen flex justify-center align-middle z-50 fixed top-0 backdrop-blur-md"
     >
       <div className="grid grid-cols-1 gap-5 w-full p-4">
@@ -55,4 +56,4 @@ function ModalDeleteUser(props: any) {
   );
 }
 
-export default ModalDeleteUser;
+export default ModalDeleteProduct;

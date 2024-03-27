@@ -1,6 +1,7 @@
 import { deleteData, retrieveData, updateData } from "@/lib/firebase/service";
 import type { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 export default async function handler(
   req: NextApiRequest,
@@ -19,12 +20,14 @@ export default async function handler(
   } else if (req.method === "PUT") {
     const { user }: any = req.query;
     const { data } = req.body;
+
     const token = req.headers.authorization?.split(" ")[1] || "";
 
     jwt.verify(
       token,
       process.env.NEXTAUTH_SECRET || "",
       async (error: any, decoded: any) => {
+        console.log(decoded);
         if (decoded && decoded.role === "admin") {
           await updateData("users", user[1], data, (result: boolean) => {
             if (result) {
@@ -53,7 +56,7 @@ export default async function handler(
   } else if (req.method === "DELETE") {
     const { user }: any = req.query;
     const token = req.headers.authorization?.split(" ")[1] || "";
-    console.log(token);
+
     jwt.verify(
       token,
       process.env.NEXTAUTH_SECRET || "",

@@ -4,9 +4,10 @@ type propsTypes = {
   onClick?: () => void;
   variant?: string;
   className?: string;
+  href?: string;
 };
 export default function Button(props: propsTypes) {
-  const { type, children, onClick, variant, className } = props;
+  const { type, children, onClick, variant, className, href } = props;
   return (
     <button type={type} onClick={onClick} className={`${className} ${variant}`}>
       {children}
