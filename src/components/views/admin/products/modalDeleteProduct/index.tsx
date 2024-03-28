@@ -1,39 +1,41 @@
 import Button from "@/components/ui/button";
 import { Modal } from "@/components/ui/modals";
+import { deleteFile } from "@/lib/firebase/service";
 import productService from "@/services/product";
 import userService from "@/services/user";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 import Swal from "sweetalert2";
 
 function ModalDeleteProduct(props: any) {
   const { deletedProduct, setDeletedProduct, setProductsData } = props;
+  const [isLoading, setIsLoading] = useState(false);
   const session: any = useSession();
 
   const handleDelete = async () => {
-    productService
-      .deleteProduct(deletedProduct.id, session.data?.accessToken)
-      .then((result) => {
-        try {
-          if (result.status !== 200) {
-            Swal.fire({
-              icon: "error",
-              text: "User tidak dapat dihapus",
-            });
-          } else {
+    const result = await productService.deleteProduct(
+      deletedProduct.id,
+      session.data?.accessToken
+    );
+
+    if (result.status === 200) {
+      setIsLoading(false);
+      deleteFile(
+        `/images/news/${deletedProduct.id}/${
+          deletedProduct.image.split("%2F")[3].split("?")[0]
+        }`,
+        async (status: boolean) => {
+          if (status) {
             Swal.fire({
               icon: "success",
-              text: ` sudah di hapus`,
+              text: `Dosen ${deletedProduct.title} telah di hapus`,
             });
+            const { data } = await productService.getAllProduct();
+            setProductsData(data.data);
           }
-        } catch {
-          Swal.fire({
-            icon: "error",
-            text: "User tidak dapat dihapus",
-          });
         }
-      });
-    const { data } = await productService.getAllProduct();
-    setProductsData(data.data);
+      );
+    }
   };
   return (
     <Modal
@@ -49,7 +51,7 @@ function ModalDeleteProduct(props: any) {
             handleDelete();
           }}
         >
-          Delete
+          {isLoading ? "Loading" : "Delete"}
         </Button>
       </div>
     </Modal>

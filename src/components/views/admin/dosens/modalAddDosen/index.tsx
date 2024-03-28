@@ -8,6 +8,7 @@ import dosenService from "@/services/dosen";
 import { Dosens } from "@/types/dosen.type";
 import { useSession } from "next-auth/react";
 import { Dispatch, SetStateAction, useState } from "react";
+import Swal from "sweetalert2";
 
 type PropsTypes = {
   setModalAddDosen: Dispatch<SetStateAction<boolean>>;
@@ -30,22 +31,25 @@ function ModalAddDosen(props: PropsTypes) {
         "dosens",
         async (status: boolean, newImageUrl: string) => {
           if (status) {
-            const data = {
-              image: newImageUrl,
-            };
+            const data = { image: newImageUrl };
             const result = await dosenService.updateDosen(
               id,
               data,
               session.data?.accessToken
             );
             if (result.status === 200) {
-              console.log(result);
               setIsLoading(false);
               setUploadedImage(null);
               form.reset();
               setModalAddDosen(false);
               const { data } = await dosenService.getAllDosens();
               setDosensData(data.data);
+              Swal.fire({
+                icon: "success",
+                title: "Success",
+                text: "Dosen telah ditambahkan",
+              });
+              console.log(data);
             }
           }
         }
@@ -64,10 +68,10 @@ function ModalAddDosen(props: PropsTypes) {
       position: form.position.value,
     };
     console.log(data);
+
     const result = await dosenService.addDosen(data, session.data?.accessToken);
     if (result.status === 200) {
-      console.log(result.data);
-      uploadImage(result.data.id, form);
+      uploadImage(result.data.data.id, form);
     }
   };
   return (

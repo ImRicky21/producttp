@@ -45,13 +45,13 @@ const ModalUpdateDosen = (props: any) => {
               Swal.fire({
                 icon: "success",
                 title: "Success",
-                text: "Dosen has been updated",
+                text: "Dosen telah diupdate",
               });
             } else {
               Swal.fire({
                 icon: "error",
                 title: "Failed",
-                text: "Dosen has not been updated",
+                text: "Dosen tidak bisa diupdate",
               });
             }
           }

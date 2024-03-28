@@ -25,18 +25,17 @@ export default async function handler(
           let data = req.body;
           data.createdAt = new Date().getTime();
           data.updatedAt = new Date().getTime();
-
           console.log(data);
-          await addData("dosens", data, (status: boolean, result: any) => {
+          await addData("dosens", data, (status: boolean, id: string) => {
             if (status) {
-              console.log(result.id);
+              console.log(id);
               res.status(200).json({
                 status: true,
                 message: "success",
                 statusCode: 200,
-                data: { id: result.id },
+                data: { id: id },
               });
-              console.log(data.id);
+              console.log(data);
             } else {
               res.status(402).json({
                 status: false,
@@ -49,12 +48,12 @@ export default async function handler(
         }
       }
     );
-    res.status(200).json({ message: "POST handler", statusCode: 200 });
+    // res.status(200).json({ message: "POST handler", statusCode: 200 });
   } else if (req.method === "PUT") {
     const { dosen }: any = req.query;
     const { data } = req.body;
     console.log(dosen);
-    console.log(data);
+
     const token = req.headers.authorization?.split(" ")[1] || "";
     jwt.verify(
       token,
@@ -63,20 +62,26 @@ export default async function handler(
         if (decoded && decoded.role === "admin") {
           await updateData("dosens", dosen[0], data, (status: boolean) => {
             if (status) {
-              res.status(200).json({ message: "success", statusCode: 200 });
+              res
+                .status(200)
+                .json({ status: true, message: "success", statusCode: 200 });
             } else {
-              res.status(400).json({ message: "failed", statusCode: 400 });
+              res
+                .status(400)
+                .json({ status: false, message: "failed", statusCode: 400 });
             }
           });
         } else {
-          res.status(400).json({ message: "access denied", statusCode: 400 });
+          res
+            .status(400)
+            .json({ status: false, message: "access denied", statusCode: 400 });
         }
       }
     );
     res.status(200).json({ message: "PUT handler", statusCode: 200 });
   } else if (req.method === "DELETE") {
     const { dosen }: any = req.query;
-
+    console.log(dosen);
     const token = req.headers.authorization?.split(" ")[1] || "";
     jwt.verify(
       token,

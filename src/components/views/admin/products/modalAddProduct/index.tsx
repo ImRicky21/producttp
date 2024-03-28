@@ -70,8 +70,9 @@ export default function ModalAddProduct(props: PropsType) {
       data,
       session.data?.accessToken
     );
+    console.log(result);
     if (result.status === 200) {
-      uploadImage(result.data.id, form);
+      uploadImage(result.data.data.id, form);
     }
   };
 

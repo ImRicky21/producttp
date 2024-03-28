@@ -32,7 +32,7 @@ function DosenAdminView(props: PropsTypes) {
             <Button
               type="button"
               onClick={() => setModalAddDosen(true)}
-              className="flex border border-solid border-sky-600 px-2 rounded-md group hover:bg-teal-300 transition-all"
+              className="mb-2 flex border border-solid border-sky-600 px-2 rounded-md group hover:bg-teal-300 transition-all"
             >
               Tambahkan Dosen
             </Button>
@@ -84,7 +84,6 @@ function DosenAdminView(props: PropsTypes) {
                       </Link>
                     </td>
                     <td className=" border border-slate-600">{dosen.phone}</td>
-                    <td className=" border border-slate-600">{dosen.id}</td>
                     <td className="border border-slate-600 ">
                       <div className="grid grid-cols-2 gap-4 m-3 text-center justify-items-center">
                         <Button

@@ -1,33 +1,49 @@
 import Button from "@/components/ui/button";
 import { Modal } from "@/components/ui/modals";
+import { deleteFile } from "@/lib/firebase/service";
 import dosenService from "@/services/dosen";
-import productService from "@/services/product";
-import userService from "@/services/user";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 import Swal from "sweetalert2";
 
 function ModalDeleteDosen(props: any) {
   const { deletedDosen, setDeletedDosen, setDosensData } = props;
+  const [isLoading, setIsLoading] = useState(false);
   const session: any = useSession();
-
   const handleDelete = async () => {
-    dosenService
-      .deleteDosen(deletedDosen.id, session.data?.accessToken)
-      .then((result) => {
-        if (result.status !== 200) {
-          Swal.fire({
-            icon: "error",
-            text: "User tidak dapat dihapus",
-          });
-        } else {
-          Swal.fire({
-            icon: "success",
-            text: ` sudah di hapus`,
-          });
+    const result = await dosenService.deleteDosen(
+      deletedDosen.id,
+      session.data?.accessToken
+    );
+
+    if (result.status === 200) {
+      setIsLoading(false);
+      deleteFile(
+        `/images/dosens/${deletedDosen.id}/${
+          deletedDosen.image.split("%2F")[3].split("?")[0]
+        }`,
+        async (status: boolean) => {
+          console.log(status);
+          if (status) {
+            Swal.fire({
+              icon: "success",
+              text: `Dosen ${deletedDosen.name} telah di hapus`,
+            });
+            const { data } = await dosenService.getAllDosens();
+            setDosensData(data.data);
+          }
         }
-      });
-    const { data } = await dosenService.getAllDosens();
-    setDosensData(data.data);
+      );
+      //   Swal.fire({
+      //     icon: "error",
+      //     text: "User tidak dapat dihapus",
+      //   });
+      // } else {
+      //   Swal.fire({
+      //     icon: "success",
+      //     text: ` sudah di hapus`,
+      //   });
+    }
   };
   return (
     <Modal

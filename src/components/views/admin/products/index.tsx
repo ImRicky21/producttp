@@ -76,7 +76,7 @@ export default function AdminProductView(props: PropsTypes) {
                     {product.createdBy}
                   </td>
                   <td className=" border border-slate-600">
-                    {product.status ? "Publish" : "Draft"}
+                    {product.status ? "Rilis" : "Draft"}
                   </td>
                   <td className="border border-slate-600 ">
                     <div className="grid grid-cols-2 gap-4 m-3 text-center justify-items-center">

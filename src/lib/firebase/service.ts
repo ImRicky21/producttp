@@ -13,11 +13,13 @@ import {
 } from "firebase/firestore";
 import app from "./init";
 import {
+  deleteObject,
   getDownloadURL,
   getStorage,
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
+import { v4 as uuidv4 } from "uuid";
 
 const firestore = getFirestore(app);
 const storage = getStorage(app);
@@ -56,19 +58,36 @@ export async function retrieveDataByFeild(
   return data;
 }
 
+// export async function addData(
+//   collcetionName: string,
+//   data: any,
+//   callBack: Function
+// ) {
+//   try {
+//     const randomId = randomUUID();
+//     const docRef = await addDoc(collection(firestore, collcetionName), data);
+//     callBack(true, { id: docRef.id, ...data });
+//     console.log(data);
+//   } catch (error) {
+//     callBack(false);
+//     console.error(error);
+//   }
+// }
+
 export async function addData(
   collcetionName: string,
   data: any,
   callBack: Function
 ) {
-  try {
-    const docRef = await addDoc(collection(firestore, collcetionName), data);
-    callBack(true, { id: docRef.id, ...data });
-    console.log(data);
-  } catch (error) {
-    callBack(false);
-    console.error(error);
-  }
+  await addDoc(collection(firestore, collcetionName), data)
+    .then((response) => {
+      callBack(true, response.id);
+      console.log(response.id);
+    })
+    .catch((error) => {
+      callBack(false);
+      console.log(error);
+    });
 }
 
 // export async function addData(
@@ -76,29 +95,13 @@ export async function addData(
 //   data: any,
 //   callBack: Function
 // ) {
-//   await addDoc(collection(firestore, collcetionName), data)
+//   const id = uuidv4();
+//   await setDoc(doc(firestore, collcetionName, id), data)
 //     .then((response) => {
-//       console.log(data);
-//       callBack(true, response);
+//       callBack(true, response, id);
 //     })
 //     .catch((error) => {
-//       callBack(false);
-//       console.log(error);
-//     });
-// }
-
-// export async function addData(
-//   collcetionName: string,
-//   data: any,
-//   callBack: Function
-// ) {
-//   await addDoc(collection(firestore, collcetionName), data)
-//     .then(() => {
-//       console.log(data);
-//       callBack(true);
-//     })
-//     .catch((error) => {
-//       callBack(false);
+//       callBack(false, id);
 //       console.log(error);
 //     });
 // }
@@ -109,7 +112,9 @@ export async function addDataId(
 ) {
   await setDoc(doc(firestore, collcetionName, data.id), data)
     .then(() => {
-      callBack(true);
+      const id = (data.id = uuidv4());
+      callBack(true, id);
+      console.log(data.id);
     })
     .catch((error) => {
       callBack(false);
@@ -187,4 +192,15 @@ export async function uploadFile(
 
     return true;
   }
+}
+
+export async function deleteFile(url: string, callBack: Function) {
+  const storageRef = ref(storage, url);
+  await deleteObject(storageRef)
+    .then(() => {
+      return callBack(true);
+    })
+    .catch(() => {
+      return callBack(false);
+    });
 }
