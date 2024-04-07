@@ -2,6 +2,7 @@ import Navbar from "@/components/fragment/navbar/navbar";
 import NavbarMenu from "@/components/fragment/navbarMenu";
 
 import "@/styles/globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import { Poppins } from "next/font/google";
@@ -122,6 +123,7 @@ export default function App({
           <NavbarMenu lists={menuNavbar} />
         )}
         <Component {...pageProps} />
+        <SpeedInsights />
       </div>
     </SessionProvider>
   );
