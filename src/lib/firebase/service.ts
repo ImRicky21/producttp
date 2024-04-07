@@ -6,6 +6,7 @@ import {
   getDoc,
   getDocs,
   getFirestore,
+  orderBy,
   query,
   setDoc,
   updateDoc,
@@ -58,6 +59,30 @@ export async function retrieveDataByFeild(
   return data;
 }
 
+export async function retrieveDataSortDesc(
+  collcetionName: string,
+  sort: string
+) {
+  const q = query(collection(firestore, collcetionName), orderBy(sort, "desc"));
+  const snapshot = await getDocs(q);
+  const data = snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+  return data;
+}
+export async function retrieveDataSortAsc(
+  collcetionName: string,
+  sort: string
+) {
+  const q = query(collection(firestore, collcetionName), orderBy(sort, "asc"));
+  const snapshot = await getDocs(q);
+  const data = snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+  return data;
+}
 // export async function addData(
 //   collcetionName: string,
 //   data: any,

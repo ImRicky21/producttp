@@ -7,6 +7,7 @@ type PropsType = {
   placeholder?: string;
   defaultValue?: string;
   disable?: boolean;
+  title: string;
   className?: string;
   id?: string;
   onChange?: (event: any) => void;
@@ -20,23 +21,20 @@ function InputFile(props: PropsType) {
     type,
     placeholder,
     className,
+    title,
     uploadedImage,
     setUploadedImage,
   } = props;
 
   return (
-    <div className="grid grid-cols-1 gap-2">
+    <div className={className}>
       {label && (
-        <label htmlFor={name}>
-          {uploadedImage?.name ? (
-            <p>{uploadedImage?.name}</p>
-          ) : (
-            <>Upload Image</>
-          )}
+        <label htmlFor={name} className="text-center align-middle">
+          {uploadedImage?.name ? <p>{uploadedImage?.name}</p> : <>{title}</>}
         </label>
       )}
       <input
-        className={`${className} h-10 w-full border border-gray-300 rounded-md none`}
+        className={`${className} h-10 w-full border border-gray-100 rounded-md none hidden text-center align-middle`}
         placeholder={placeholder}
         type={type}
         name={name}

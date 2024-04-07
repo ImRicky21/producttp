@@ -1,6 +1,8 @@
 export type Dosens = {
+  scholar: string;
+  position: string;
   id: string;
-  fullname: string;
+  name: string;
   nip: string;
   schoolar: string;
   phone: number;

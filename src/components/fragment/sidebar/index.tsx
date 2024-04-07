@@ -14,7 +14,7 @@ function Sidebar(props: Propstypes) {
   const { lists } = props;
   const { pathname } = useRouter();
   return (
-    <div className="flex flex-col justify-between font-medium min-h-screen w-64 bg-black text-white  ">
+    <div className="flex flex-col justify-between font-medium min-h-screen w-64 bg-black text-white">
       <div className="flex flex-col gap-4 w-full py-4 ">
         <h1 className="text-center text-2xl font-bold top-0 ">Admin Panel</h1>
         {lists.map((list, index) => (

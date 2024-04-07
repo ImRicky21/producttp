@@ -13,7 +13,7 @@ type propsTypes = {
 const Select = (props: propsTypes) => {
   const { label, name, defaultValue, disable, className, options } = props;
   return (
-    <div className="grid grid-cols-1 gap-2">
+    <div className="flex flex-col">
       <label htmlFor={name}>{label}</label>
       <select
         name={name}

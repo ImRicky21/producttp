@@ -7,9 +7,11 @@ type propsTypes = {
   disable?: boolean;
   className?: string;
   id?: string;
+  onChange?: () => void;
 };
 function Input(props: propsTypes) {
   const {
+    onChange,
     label,
     name,
     type,
@@ -20,10 +22,12 @@ function Input(props: propsTypes) {
     id,
   } = props;
   return (
-    <div className="grid grid-cols-1 gap-2">
+    <div className={`flex flex-col ${className} h-7 `}>
       {label && <label htmlFor={name}></label>}
       {label}
       <input
+        onSubmit={onChange}
+        onChange={onChange}
         type={type}
         name={name}
         id={id}

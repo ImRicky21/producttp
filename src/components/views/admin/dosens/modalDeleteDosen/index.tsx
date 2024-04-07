@@ -11,39 +11,74 @@ function ModalDeleteDosen(props: any) {
   const [isLoading, setIsLoading] = useState(false);
   const session: any = useSession();
   const handleDelete = async () => {
-    const result = await dosenService.deleteDosen(
-      deletedDosen.id,
-      session.data?.accessToken
-    );
+    Swal.fire({
+      icon: "warning",
+      title: "Anda yakin?",
+      text: ` ${deletedDosen.name} akan dihapus`,
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Hapus",
+    }).then((result) => {
+      console.log(result);
+      if (result.isConfirmed) {
+        dosenService
+          .deleteDosen(deletedDosen.id, session.data?.accessToken)
+          .then(async (result) => {
+            console.log(result);
+            if (result.status === 200) {
+              setIsLoading(false);
+              deleteFile(
+                `/images/dosens/${deletedDosen.id}/${
+                  deletedDosen.image.split("%2F")[3].split("?")[0]
+                }`,
+                async (status: boolean) => {
+                  console.log(status);
+                  if (status) {
+                    Swal.fire({
+                      timer: 5000,
+                      icon: "success",
+                      text: `Dosen ${deletedDosen.name} telah di hapus`,
+                    });
+                    const { data } = await dosenService.getAllDosens();
+                    setDosensData(data.data);
+                  }
+                }
+              );
+            }
+          });
+        setIsLoading(true);
+        setDeletedDosen({});
+      } else {
+        setIsLoading(false);
+        setDeletedDosen({});
+      }
+    });
 
-    if (result.status === 200) {
-      setIsLoading(false);
-      deleteFile(
-        `/images/dosens/${deletedDosen.id}/${
-          deletedDosen.image.split("%2F")[3].split("?")[0]
-        }`,
-        async (status: boolean) => {
-          console.log(status);
-          if (status) {
-            Swal.fire({
-              icon: "success",
-              text: `Dosen ${deletedDosen.name} telah di hapus`,
-            });
-            const { data } = await dosenService.getAllDosens();
-            setDosensData(data.data);
-          }
-        }
-      );
-      //   Swal.fire({
-      //     icon: "error",
-      //     text: "User tidak dapat dihapus",
-      //   });
-      // } else {
-      //   Swal.fire({
-      //     icon: "success",
-      //     text: ` sudah di hapus`,
-      //   });
-    }
+    // const result = await dosenService.deleteDosen(
+    //   deletedDosen.id,
+    //   session.data?.accessToken
+    // );
+
+    // if (result.status === 200) {
+    //   setIsLoading(false);
+    //   deleteFile(
+    //     `/images/dosens/${deletedDosen.id}/${
+    //       deletedDosen.image.split("%2F")[3].split("?")[0]
+    //     }`,
+    //     async (status: boolean) => {
+    //       console.log(status);
+    //       if (status) {
+    //         Swal.fire({
+    //           icon: "success",
+    //           text: `Dosen ${deletedDosen.name} telah di hapus`,
+    //         });
+    //         const { data } = await dosenService.getAllDosens();
+    //         setDosensData(data.data);
+    //       }
+    //     }
+    //   );
+    // }
   };
   return (
     <Modal

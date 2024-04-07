@@ -1,10 +1,10 @@
-import AdminProductView from "@/components/views/admin/products";
+import ProductView from "@/components/views/product";
 import productService from "@/services/product";
+import Head from "next/head";
 import { useEffect, useState } from "react";
 
-export default function AdminProductPage(props: any) {
+export default function ProductsPage() {
   const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const getAllProducts = async () => {
       const { data } = await productService.getAllProduct();
@@ -12,9 +12,13 @@ export default function AdminProductPage(props: any) {
     };
     getAllProducts();
   }, []);
+
   return (
     <>
-      <AdminProductView products={products} />
+      <Head>
+        <title>Berita / Pengumuman</title>
+      </Head>
+      <ProductView products={products} />
     </>
   );
 }

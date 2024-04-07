@@ -8,6 +8,7 @@ import { uploadFile } from "@/lib/firebase/service";
 import productService from "@/services/product";
 import { Products } from "@/types/products.type";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 
 type PropsType = {
@@ -62,8 +63,10 @@ export default function ModalAddProduct(props: PropsType) {
     const data = {
       title: form.title.value,
       description: form.description.value,
+      tag: form.tag.value,
       createdBy: form.createdBy.value,
       date: form.date.value,
+      status: form.status.value,
       image: "",
     };
     const result = await productService.addProduct(
@@ -79,57 +82,189 @@ export default function ModalAddProduct(props: PropsType) {
   return (
     <Modal
       onClose={() => setModalAddProduct(false)}
-      className="w-screen h-screen flex justify-center align-middle z-50 fixed top-0 backdrop-blur-md"
+      className="w-screen h-screen flex justify-center align-middle z-50 fixed top-0 backdrop-blur-md md:backdrop-blur-md"
     >
-      <div className="w-full p-4 bg-tertiary rounded-md">
-        <form onSubmit={handleSubmit}>
-          <Input
-            id="title"
-            label="Judul"
-            type="text"
-            name="title"
-            placeholder="Judul"
-          />
-          <TextArea
-            label="Deskripsi"
-            type="text"
-            name="description"
-            placeholder="Deskripsi"
-          />
-          <Input
-            id="createdBy"
-            label="Ditulis Oleh"
-            type="text"
-            name="createdBy"
-            placeholder="Ditulis Oleh"
-          />
-          <Input
-            id="date"
-            label="Tempat dan Tanggal"
-            type="text"
-            name="date"
-            placeholder="E.X : Banjarmasin, XX Maret 2023"
-          />
-          <InputFile
-            type="file"
-            label="Gambar"
-            name="image"
-            setUploadedImage={setUploadedImage}
-            uploadedImage={uploadedImage}
-          />
-          <Select
-            label="Status"
-            name="status"
-            options={[
-              { label: "Rilis", value: "rilis" },
-              { label: "Draft", value: "draft" },
-            ]}
-          />
-          <Button type="submit" className={`mt-3 p-2 rounded-md bg-cyan-500 `}>
-            {isLoading ? "Loading..." : "Submit"}
-          </Button>
+      <div
+        className={`w-full bg-tertiary rounded-md${
+          isLoading ? " disabled:form" : " opacity-100"
+        }`}
+      >
+        <h1 className="text-2xl p-3 text-center">Tambahkan Berita</h1>
+        <form onSubmit={handleSubmit} className="grid grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 p-3">
+            <div className="flex p-5 max-h-96 max-w-96">
+              {uploadedImage && (
+                <Image
+                  src={URL.createObjectURL(uploadedImage)}
+                  alt="image"
+                  width={400}
+                  height={200}
+                />
+              )}
+            </div>
+            <InputFile
+              title="Sunting Gambar"
+              className="grid grid-cols-1 gap-1 bg-slate-100 text-center align-middle rounded-md"
+              type="file"
+              label="Gambar"
+              name="image"
+              id="image"
+              setUploadedImage={setUploadedImage}
+              uploadedImage={uploadedImage}
+            />
+          </div>
+
+          <div className="grid grid-cols-1 gap-5 m-4 p-5">
+            <TextArea
+              label="Deskripsi"
+              type="text"
+              name="description"
+              placeholder="Deskripsi"
+            />
+            <div className="grid grid-cols-1 gap-9">
+              <Input
+                id="createdBy"
+                label="Ditulis Oleh"
+                type="text"
+                name="createdBy"
+                placeholder="Ditulis Oleh"
+              />
+              <Input
+                id="date"
+                label="Tempat dan Tanggal"
+                type="text"
+                name="date"
+                placeholder="E.X : Banjarmasin, XX Maret 2023"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-row m-1 p-3 gap-3 ">
+            <Input
+              id="title"
+              label="Judul"
+              type="text"
+              name="title"
+              placeholder="Judul"
+            />
+            <Select
+              label="Tag"
+              name="tag"
+              className="w-40"
+              defaultValue="tag"
+              options={[
+                { label: "Berita", value: "berita" },
+                { label: "Pengumuman", value: "pengumuman" },
+              ]}
+            />
+          </div>
+
+          <div className="p-4 m3">
+            <Select
+              label="Status"
+              name="status"
+              options={[
+                { label: "Rilis", value: "rilis" },
+                { label: "Draft", value: "draft" },
+              ]}
+            />
+            <Button
+              type="submit"
+              className={`mt-3 p-2 rounded-md bg-cyan-500 w-full ${
+                isLoading ? "disabled:" : "opacity-100"
+              }`}
+            >
+              {isLoading ? "Loading..." : "Submit"}
+            </Button>
+          </div>
         </form>
       </div>
     </Modal>
+    // <Modal
+    //   onClose={() => setModalAddProduct(false)}
+    //   className="w-screen h-screen flex justify-center align-middle z-50 fixed top-0 backdrop-blur-md"
+    // >
+    //   <div className="w-full p-4 bg-tertiary rounded-md ">
+    //     <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-5">
+    //       <div className="grid grid-cols-1 gap-5 p-3">
+    //         {uploadedImage && (
+    //           <Image
+    //             src={URL.createObjectURL(uploadedImage)}
+    //             alt="image"
+    //             width={200}
+    //             height={200}
+    //           />
+    //         )}
+    //         <InputFile
+    //           title="upload image"
+    //           type="file"
+    //           label="Gambar"
+    //           name="image"
+    //           setUploadedImage={setUploadedImage}
+    //           uploadedImage={uploadedImage}
+    //         />
+    //       </div>
+
+    //       <div className="grid grid-cols-1 gap-5 m-4 p-5">
+    //         <TextArea
+    //           label="Deskripsi"
+    //           type="text"
+    //           name="description"
+    //           placeholder="Deskripsi"
+    //         />
+    //         <Input
+    //           id="createdBy"
+    //           label="Ditulis Oleh"
+    //           type="text"
+    //           name="createdBy"
+    //           placeholder="Ditulis Oleh"
+    //         />
+    //         <Input
+    //           id="date"
+    //           label="Tempat dan Tanggal"
+    //           type="text"
+    //           name="date"
+    //           placeholder="E.X : Banjarmasin, XX Maret 2023"
+    //         />
+    //       </div>
+    //       <div className="flex flex-row m-1 p-3 ">
+    //         <Input
+    //           id="title"
+    //           label="Judul"
+    //           type="text"
+    //           name="title"
+    //           className="px-3"
+    //           placeholder="Judul"
+    //         />
+    //         <Select
+    //           label="Tag"
+    //           name="tag"
+    //           defaultValue="tag"
+    //           options={[
+    //             { label: "Berita", value: "berita" },
+    //             { label: "Pengumuman", value: "pengumuman" },
+    //           ]}
+    //         />
+    //       </div>
+    //       <div>
+    //         <Select
+    //           label="Status"
+    //           name="status"
+    //           defaultValue="rilis"
+    //           options={[
+    //             { label: "Rilis", value: "rilis" },
+    //             { label: "Draft", value: "draft" },
+    //           ]}
+    //         />
+    //         <Button
+    //           type="submit"
+    //           className={`mt-3 p-2 rounded-md bg-cyan-500 `}
+    //         >
+    //           {isLoading ? "Loading..." : "Submit"}
+    //         </Button>
+    //       </div>
+    //     </form>
+    //   </div>
+    // </Modal>
   );
 }

@@ -13,29 +13,51 @@ function ModalDeleteProduct(props: any) {
   const session: any = useSession();
 
   const handleDelete = async () => {
-    const result = await productService.deleteProduct(
-      deletedProduct.id,
-      session.data?.accessToken
-    );
-
-    if (result.status === 200) {
-      setIsLoading(false);
-      deleteFile(
-        `/images/news/${deletedProduct.id}/${
-          deletedProduct.image.split("%2F")[3].split("?")[0]
-        }`,
-        async (status: boolean) => {
-          if (status) {
-            Swal.fire({
-              icon: "success",
-              text: `Dosen ${deletedProduct.title} telah di hapus`,
-            });
-            const { data } = await productService.getAllProduct();
-            setProductsData(data.data);
-          }
-        }
-      );
-    }
+    Swal.fire({
+      icon: "warning",
+      title: "Anda yakin?",
+      text: ` ${deletedProduct.title} akan di hapus`,
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Hapus",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        productService
+          .deleteProduct(deletedProduct.id, session.data?.accessToken)
+          .then(async (result) => {
+            if (result.status === 200) {
+              setIsLoading(false);
+              deleteFile(
+                `/images/news/${deletedProduct.id}/${
+                  deletedProduct.image.split("%2F")[3].split("?")[0]
+                }`,
+                async (status: boolean) => {
+                  if (status) {
+                    Swal.fire({
+                      timer: 2000,
+                      icon: "success",
+                      text: ` ${deletedProduct.title} telah di hapus`,
+                    });
+                    const { data } = await productService.getAllProduct();
+                    setProductsData(data.data);
+                  } else {
+                    setIsLoading(false);
+                    setDeletedProduct({});
+                  }
+                }
+              );
+            } else {
+              setIsLoading(false);
+              setDeletedProduct({});
+            }
+          });
+      } else {
+        Swal.fire({
+          text: "Product tidak di hapus",
+        });
+      }
+    });
   };
   return (
     <Modal

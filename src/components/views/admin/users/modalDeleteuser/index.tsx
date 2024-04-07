@@ -9,30 +9,42 @@ function ModalDeleteUser(props: any) {
   const session: any = useSession();
 
   const handleDelete = async () => {
-    userService
-      .deleteUser(deletedUser.id, session.data?.accessToken)
-      .then((result) => {
-        try {
-          if (result.status !== 200) {
-            Swal.fire({
-              icon: "error",
-              text: "User tidak dapat dihapus",
-            });
-          } else {
-            Swal.fire({
-              icon: "success",
-              text: `User ${deletedUser.fullname} sudah di hapus`,
-            });
-          }
-        } catch {
-          Swal.fire({
-            icon: "error",
-            text: "User tidak dapat dihapus",
+    Swal.fire({
+      icon: "warning",
+      title: "Are you sure?",
+      text: `User ${deletedUser.fullname} will be deleted`,
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        userService
+          .deleteUser(deletedUser.id, session.data?.accessToken)
+          .then(async (result) => {
+            try {
+              if (result.status !== 200) {
+                Swal.fire({
+                  icon: "error",
+                  text: "User tidak dapat dihapus",
+                });
+              } else {
+                Swal.fire({
+                  icon: "success",
+                  text: `User ${deletedUser.fullname} sudah di hapus`,
+                });
+                const { data } = await userService.getAllUser();
+                setUsersData(data.data);
+              }
+            } catch {
+              Swal.fire({
+                icon: "error",
+                text: "User tidak dapat dihapus",
+              });
+            }
           });
-        }
-      });
-    const { data } = await userService.getAllUser();
-    setUsersData(data.data);
+      }
+    });
   };
   return (
     <Modal

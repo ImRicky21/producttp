@@ -3,6 +3,7 @@ import {
   addDataId,
   deleteData,
   retrieveData,
+  retrieveDataSortDesc,
   updateData,
 } from "@/lib/firebase/service";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -13,7 +14,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "GET") {
-    const data = await retrieveData("dosens");
+    const data = await retrieveDataSortDesc("dosens", "createdAt");
     res.status(200).json({ message: "success", statusCode: 200, data: data });
   } else if (req.method === "POST") {
     const token = req.headers.authorization?.split(" ")[1] || "";
