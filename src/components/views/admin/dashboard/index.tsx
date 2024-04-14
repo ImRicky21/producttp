@@ -20,7 +20,7 @@ function DashboardAdminView(props: PropsTypes) {
   const [dosenData, setDosenData] = useState<Dosens[]>([]);
   const [resultData, setResultData] = useState([]);
   const [productData, setProductData] = useState<Products[]>([]);
-  const [isloading, setIsLoading] = useState();
+  const [isloading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(5);
 
