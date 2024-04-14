@@ -8,7 +8,7 @@ function AdminPage() {
   const [dosens, setDosens] = useState([]);
   const [products, setProducts] = useState([]);
   const [allData, setAllData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState();
   useEffect(() => {
     const getAlldosens = async () => {
       const { data } = await dosenService.getAllDosens();

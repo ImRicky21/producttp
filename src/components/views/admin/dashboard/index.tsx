@@ -20,7 +20,7 @@ function DashboardAdminView(props: PropsTypes) {
   const [dosenData, setDosenData] = useState<Dosens[]>([]);
   const [resultData, setResultData] = useState([]);
   const [productData, setProductData] = useState<Products[]>([]);
-  const [isloading, setIsLoading] = useState(false);
+  const [isloading, setIsLoading] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(5);
 
@@ -43,45 +43,45 @@ function DashboardAdminView(props: PropsTypes) {
 
   return (
     <AdminLayout>
-      <div className="align-middle justify-items-center items-center p-9 m-7 flex flex-col">
-        <div>
+      <div className="align-middle justify-items-center items-center flex flex-col p-2 ">
+        <div className="flex flex-col justify-items-center">
           <h1 className="text-3xl font-semibold mb-11 capitalize text-teal-400">
             admin page
           </h1>
           <div className="">
             <h2>Selamat Datang di Dashboard Admin</h2>
           </div>
-          <div className="flex  flex-row gap-3">
-            {products.length > 0 && (
-              <Card
-                link="/admin/products"
-                classname="text-center text-white flex flex-col justify-items-center w-60 hover:shadow-xl"
-              >
-                <div className="flex flex-row gap-2 justify-center items-center">
-                  <FaNewspaper className="text-5xl text-center" />
-                  <h1 className="text-xl"> Berita dan Pengumuman </h1>
-                </div>
-                <h1 className="text-xl font-bold tracking-widest">{`${products.length}`}</h1>
-              </Card>
-            )}
-            {dosens.length > 0 && (
-              <Card
-                link="/admin/dosens"
-                classname="text-center text-white flex flex-col justify-items-center w-60 hover:shadow-xl"
-              >
-                <div className="flex flex-row gap-2 justify-center items-center">
-                  <FaGraduationCap className="text-5xl" />
+        </div>
+        <div className="flex flex-col gap-3 md:flex-row">
+          {products.length > 0 && (
+            <Card
+              link="/admin/products"
+              classname="text-center text-white flex flex-col justify-items-center w-60 hover:shadow-xl"
+            >
+              <div className="flex flex-row gap-2 justify-center items-center">
+                <FaNewspaper className="text-5xl text-center" />
+                <h1 className="text-xl"> Berita dan Pengumuman </h1>
+              </div>
+              <h1 className="text-xl font-bold tracking-widest">{`${products.length}`}</h1>
+            </Card>
+          )}
+          {dosens.length > 0 && (
+            <Card
+              link="/admin/dosens"
+              classname="text-center text-white flex flex-col justify-items-center w-60 hover:shadow-xl"
+            >
+              <div className="flex flex-row gap-2 justify-center items-center">
+                <FaGraduationCap className="text-5xl" />
 
-                  <h1 className="text-xl">Dosen dan Staff</h1>
-                </div>
-                <h1 className="text-xl font-bold">{`${dosens.length}`}</h1>
-              </Card>
-            )}
-          </div>
+                <h1 className="text-xl">Dosen dan Staff</h1>
+              </div>
+              <h1 className="text-xl font-bold">{`${dosens.length}`}</h1>
+            </Card>
+          )}
         </div>
       </div>
 
-      <div className="mt-10 p-10">
+      <div className="">
         <div>
           <h1 className="text-xl font-medium">Riwayat Update</h1>
           <table className="table-row ">
@@ -91,7 +91,7 @@ function DashboardAdminView(props: PropsTypes) {
                 <th className="border border-slate-950">Image</th>
                 <th className="border border-slate-950">Data</th>
                 <th className="border border-slate-950">Tanggal</th>
-                <th className="border border-slate-950">Tipe</th>
+                <th className="border border-slate-950 max-md:hidden">Tipe</th>
               </tr>
             </thead>
             <tbody>
@@ -124,7 +124,7 @@ function DashboardAdminView(props: PropsTypes) {
                         }
                       )}
                   </td>
-                  <td className="border border-slate-950">
+                  <td className="border border-slate-950 truncate max-md:hidden">
                     {result?.title ? "Berita/Pengumuman" : "Dosen"}
                   </td>
                 </tr>

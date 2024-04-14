@@ -17,9 +17,9 @@ const listSideBar = [
 function AdminLayout(props: Propstypes) {
   const { children } = props;
   return (
-    <div className="flex">
+    <div className="flex flex-row gap-11">
       <Sidebar lists={listSideBar} />
-      <div className="w-full">{children}</div>
+      <div className="max-w-full mx-4 px-2">{children}</div>
     </div>
   );
 }

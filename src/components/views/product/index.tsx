@@ -11,7 +11,7 @@ type PropsTypes = {
 export default function ProductView(props: PropsTypes) {
   const { products } = props;
   const [productsData, setProductsData] = useState<Products[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(5);
 

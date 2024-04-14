@@ -56,8 +56,8 @@ export default function AdminProductView(props: PropsTypes) {
               <tr className="border border-slate-600">
                 <th className="border border-slate-950">#</th>
                 <th className="border border-slate-950 ">Foto</th>
-                <th className="border border-slate-950 ">Tag</th>
                 <th className="border border-slate-950">Judul</th>
+                <th className="border border-slate-950 ">Tag</th>
                 <th className="border border-slate-950 w-48">Deskripsi</th>
                 <th className="border border-slate-950">Tanggal</th>
                 <th className="border border-slate-950">Penulis</th>
