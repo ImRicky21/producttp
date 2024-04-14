@@ -1,6 +1,5 @@
 import DosenView from "@/components/views/dosen";
 import dosenService from "@/services/dosen";
-import { Dosens } from "@/types/dosen.type";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 
