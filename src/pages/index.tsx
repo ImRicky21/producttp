@@ -1,12 +1,22 @@
-import Image from "next/image";
 import { Inter } from "next/font/google";
+import HomeView from "@/components/views/home";
+import { useEffect, useState } from "react";
+import productService from "@/services/product";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const getAllProducts = async () => {
+      const { data } = await productService.getAllProduct();
+      setProducts(data.data);
+    };
+    getAllProducts();
+  }, []);
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    ></main>
+    <main className={`flex justify-between m-3 ${inter.className}`}>
+      <HomeView products={products} />
+    </main>
   );
 }

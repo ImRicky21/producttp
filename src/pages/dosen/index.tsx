@@ -9,7 +9,6 @@ export default function DosenPage() {
     const getAlldosens = async () => {
       const { data } = await dosenService.getAllDosens();
       setDosens(data.data);
-      console.log(data.data);
     };
     getAlldosens();
   }, []);

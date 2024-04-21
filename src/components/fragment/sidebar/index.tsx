@@ -17,7 +17,7 @@ function Sidebar(props: Propstypes) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div
-      className={`flex flex-col font-medium text-white sticky top-0 transition max-h-screen ${
+      className={`flex flex-col font-medium text-white sticky top-0 transition h-screen ${
         isOpen ? "w-64 bg-black " : "w-0"
       }`}
       style={{ zIndex: 1000 }}

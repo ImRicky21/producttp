@@ -44,7 +44,7 @@ function DosenAdminView(props: PropsTypes) {
             <Loader loaderColor="#C08B5C" />
           </div>
         ) : (
-          <div className="p-5">
+          <div className="p-5 justify-center">
             <div className="grid grid-cols-1 gap-5 w-full p-4 px-6">
               <h2 className="text-xl text-center font-bold">
                 Halaman Data Dosen

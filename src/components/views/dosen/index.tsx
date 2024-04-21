@@ -15,7 +15,7 @@ export default function DosenView(props: PropsTypes) {
   useEffect(() => {
     setDosensData(dosens);
   }, [dosens]);
-  console.log(dosens);
+
   return (
     <>
       <div className="flex flex-col justify-center align-middle items-center">

@@ -68,7 +68,7 @@ function DashboardAdminView(props: PropsTypes) {
           {dosens.length > 0 && (
             <Card
               link="/admin/dosens"
-              classname="text-center text-white flex flex-col justify-items-center w-60 hover:shadow-xl"
+              classname="text-center text-white flex flex-col justify-items-center w-60 hover:shadow-xl "
             >
               <div className="flex flex-row gap-2 justify-center items-center">
                 <FaGraduationCap className="text-5xl" />

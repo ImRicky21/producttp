@@ -1,3 +1,4 @@
+import Footer from "@/components/fragment/footer";
 import Navbar from "@/components/fragment/navbar/navbar";
 import NavbarMenu from "@/components/fragment/navbarMenu";
 import "@/styles/globals.css";
@@ -12,12 +13,14 @@ const poppins = Poppins({
 });
 const menuNavbar = [
   {
+    id: 1,
     title: "Beranda",
     url: "/",
   },
   {
+    id: 2,
     title: "Profil",
-    url: "/profil",
+    url: "/",
     sub: [
       { title: "Identitas Prodi", url: "/identitas-prodi" },
       { title: "Visi Keilmuan Dan Tujuan", url: "/visi-dan-tujuan" },
@@ -28,8 +31,9 @@ const menuNavbar = [
     ],
   },
   {
+    id: 3,
     title: "Akademik",
-    url: "/akademik",
+    url: "/",
     sub: [
       { title: "Kurikulum", url: "/kurikulum" },
       {
@@ -43,19 +47,20 @@ const menuNavbar = [
     ],
   },
   {
+    id: 4,
     title: "Kemahasiswaan",
-    url: "/kemahasiswaan",
+    url: "/",
     sub: [
       { title: "MBKM", url: "/mbkm" },
-      { title: "Prestasi Mahasiswa", url: "/prestasi-mahasiswa" },
       { title: "Prestasi Mahasiswa", url: "/prestasi-mahasiswa" },
       { title: "Himpunan Mahasiswa", url: "/himpunan-mahasiswa" },
       { title: "Beasiswa", url: "/beasiswa" },
     ],
   },
   {
+    id: 5,
     title: "Tri Dharma",
-    url: "/tri-dharma",
+    url: "/",
     sub: [
       {
         title: "Pengabdian",
@@ -71,8 +76,9 @@ const menuNavbar = [
     ],
   },
   {
+    id: 6,
     title: "Survei",
-    url: "/survei",
+    url: "/",
     sub: [
       {
         title: "Pemahaman Visi Keilmuan dan Tujuan",
@@ -97,8 +103,9 @@ const menuNavbar = [
     ],
   },
   {
+    id: 7,
     title: "Akreditasi",
-    url: "/akreditasi",
+    url: "/",
     sub: [
       { title: "Dokumen Kebijakan", url: "/dokumen-kebijakan" },
       { title: "AMI", url: "/ami" },
@@ -118,9 +125,16 @@ export default function App({
     <SessionProvider session={session}>
       <div className={poppins.className}>
         {!disableNavbar.includes(pathname.split("/")[1]) && (
-          <NavbarMenu lists={menuNavbar} />
+          <>
+            <NavbarMenu lists={menuNavbar} />
+          </>
         )}
         <Component {...pageProps} />
+        {!disableNavbar.includes(pathname.split("/")[1]) && (
+          <>
+            <Footer />
+          </>
+        )}
       </div>
     </SessionProvider>
   );
