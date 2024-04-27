@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Propstypes = {
   lists: Array<{
@@ -16,19 +16,39 @@ type Propstypes = {
 export default function NavbarMenu(props: Propstypes) {
   const { lists } = props;
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsSrcolled] = useState(false);
+  useEffect(() => {
+    function handleScrolled() {
+      const scrollTop = window.scrollY;
+      const scrollTreshold = 50;
+      setIsSrcolled(scrollTop > scrollTreshold);
+    }
+    window.addEventListener("scroll", handleScrolled);
+    return () => {
+      window.removeEventListener("scroll", handleScrolled);
+    };
+  }, []);
   return (
     <>
-      <nav className="flex gap-8 justify-between p-1 m-4 sticky top-0 z-50">
+      <nav
+        className={` flex w-full gap-8 justify-between p-3 mt-1 sticky top-0 z-50 transition-all ease-in-out ${
+          isScrolled ? "bg-opacity-80 backdrop-blur-md shadow-md" : ""
+        }`}
+      >
         <div>Image</div>
-        <div className={` flex top-0 ${isOpen ? "hidden" : "block"}`}>
+        <div
+          className={`md:flex md:flex-row justify-end p-1 top-0  ${
+            !isOpen ? "hidden" : "flex flex-col"
+          }`}
+        >
           {lists.map((list) => (
             <ul key={list.id}>
-              <li className="group text-center mx-4">
-                <Link className="pl-7" href={list.url}>
+              <li className="group text-center mx-4 ">
+                <Link className="md:p-7" href={list.url}>
                   {list.title}
                 </Link>
                 {list.sub && list.sub.length > 0 && (
-                  <ul className=" z-50 bg-slate-100 md:absolute hidden group-hover:block justify-center rounded-lg">
+                  <ul className=" z-50 bg-slate-100 shadow-md md:absolute hidden group-hover:block justify-center rounded-lg">
                     {list.sub.map((sub) => (
                       <li
                         key={sub.title}

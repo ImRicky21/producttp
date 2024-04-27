@@ -8,7 +8,6 @@ interface CarouselProps {
 const Carousel: React.FC<CarouselProps> = ({ images }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-
   const goToPrevious = () => {
     setCurrentImageIndex(
       currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1
@@ -33,7 +32,7 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
   }, []);
 
   return (
-    <div className="relative w-3/4">
+    <div className="relative md:w-3/4 w-full">
       {isLoading && <div className="carousel-loading">Loading...</div>}
       <div
         className={`carousel rounded-sm ${
@@ -52,8 +51,8 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
               <Image
                 src={image}
                 alt={`Image ${index}`}
-                width={400}
-                height={400}
+                width={600}
+                height={600}
                 onLoad={() => setIsLoading(false)}
               />
             </div>

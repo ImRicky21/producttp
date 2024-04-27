@@ -1,10 +1,12 @@
 export default function VisiKeilmuanView() {
   return (
     <>
-      <div>
-        <div className="grid md:grid-cols-2 gap-2 m-4">
-          <div className="m-4">
-            <h2 className="text-3xl font-bold">Visi Keilmuan</h2>
+      <div className="flex flex-wrap w-screen justify-center ">
+        <div className="grid md:grid-cols-2 gap-2">
+          <div className="m-4 p-3">
+            <h2 className="text-3xl font-bold uppercase text-center">
+              Visi Keilmuan
+            </h2>
             <p className="text-justify mb-3">
               Mengembangkan pembelajaran dan Riset yang terkemuka untuk
               menghasilkan teknolog pendidikan yang mampu mengembangkan,
@@ -12,8 +14,10 @@ export default function VisiKeilmuanView() {
               yang berwawasan lingkungan lahan basah.
             </p>
           </div>
-          <div className="p-4">
-            <h2 className="text-3xl font-bold">Tujuan Program</h2>
+          <div className="p-4 m-4 flex flex-col flex-wrap">
+            <h2 className="text-3xl font-bold uppercase text-center">
+              Tujuan Program
+            </h2>
             <ul className="list-decimal text-justify ">
               <li>
                 Menghasilkan teknolog pendidikan yang mampu melakukan kajian

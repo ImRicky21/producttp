@@ -3,7 +3,7 @@ import Link from "next/link";
 type PropsType = {
   children?: React.ReactNode;
   classname?: string;
-  link: string;
+  link?: string;
 };
 export default function Card(props: PropsType) {
   const { children, link, classname } = props;

@@ -19,9 +19,6 @@ export default function DosenView(props: PropsTypes) {
   return (
     <>
       <div className="flex flex-col justify-center align-middle items-center">
-        <div>
-          <h1>ini Dosen page</h1>
-        </div>
         <div className="flex flex-wrap items-center justify-center p-4 m-5 w-4/5">
           {dosensData
             .sort(
@@ -38,34 +35,35 @@ export default function DosenView(props: PropsTypes) {
                 <div className="items-center justify-center hover:opacity-80 transition ease-in-out">
                   <Image
                     src={dosen.image}
-                    width={200}
-                    height={200}
+                    // width={600}
+                    // height={700}
+                    layout="fill"
+                    objectFit="cover"
                     alt={dosen.name}
                     className="rounded-md"
                   />
                 </div>
-                <div className="rounded-lg text-white group mt-4 absolute h-full -top-4 left-0 right-0 bottom-0 bg-black bg-opacity-75 opacity-0 hover:opacity-100 transition ease-in-out flex justify-center items-center">
-                  <div className="text-center">
+                <div className="rounded-lg text-white group mt-4 absolute h-full -top-4 left-0 right-0 bottom-0 bg-black bg-opacity-75 opacity-0 hover:opacity-100 transition ease-in-out flex flex-col justify-center items-center">
+                  <div className="text-center flex flex-col">
                     <h1 className="inline-block">{dosen.name}</h1>
                     <p className="inline-block">{dosen.position}</p>
                     <p className="inline-block">{dosen.nip}</p>
-                    <div className="inline-block">
-                      <p className="inline-block">{dosen.scholar}</p>
-                      <Link
-                        className="text-green-400 text-4xl"
-                        href={`https://wa.me/${dosen.phone}`}
-                        target="_blank"
-                      >
-                        <FaWhatsapp />
-                      </Link>
-                      <Link
-                        className="text-cyan-500 text-4xl"
-                        href={`https://scholar.google.com/citations?hl=en&user=${dosen.scholar}`}
-                        target="_blank"
-                      >
-                        <FaGraduationCap />
-                      </Link>
-                    </div>
+                  </div>
+                  <div className="inline-block ">
+                    <Link
+                      className="text-green-400 text-4xl"
+                      href={`https://wa.me/${dosen.phone}`}
+                      target="_blank"
+                    >
+                      <FaWhatsapp />
+                    </Link>
+                    <Link
+                      className="text-cyan-500 text-4xl"
+                      href={`https://scholar.google.com/citations?hl=en&user=${dosen.scholar}`}
+                      target="_blank"
+                    >
+                      <FaGraduationCap />
+                    </Link>
                   </div>
                 </div>
               </Card>

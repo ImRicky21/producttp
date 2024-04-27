@@ -15,9 +15,15 @@ export default function DosenPage() {
   return (
     <>
       <Head>
-        <title>Dosen</title>
+        <title>Dosen dan Staf</title>
       </Head>
-      <DosenView dosens={dosens} />
+
+      <div className="flex flex-col mt-5">
+        <h1 className="text-5xl uppercase text-center font-semibold">
+          dosen dan staf
+        </h1>
+        <DosenView dosens={dosens} />
+      </div>
     </>
   );
 }

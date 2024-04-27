@@ -6,6 +6,7 @@ import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import { Poppins } from "next/font/google";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -120,19 +121,24 @@ export default function App({
   pageProps: { session, ...pageProps },
 }: AppProps) {
   const { pathname } = useRouter();
-
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
   return (
     <SessionProvider session={session}>
-      <div className={poppins.className}>
-        {!disableNavbar.includes(pathname.split("/")[1]) && (
+      <div className={`${poppins.className} bg-slate-100 w-screen`}>
+        {isLoading ? (
+          <div className="loader text-center w-screen h-screen justify-items-center justify-center align-middle">
+            Loading...
+          </div>
+        ) : (
           <>
-            <NavbarMenu lists={menuNavbar} />
-          </>
-        )}
-        <Component {...pageProps} />
-        {!disableNavbar.includes(pathname.split("/")[1]) && (
-          <>
-            <Footer />
+            {!disableNavbar.includes(pathname.split("/")[1]) && (
+              <NavbarMenu lists={menuNavbar} />
+            )}
+            <Component {...pageProps} />
+            {!disableNavbar.includes(pathname.split("/")[1]) && <Footer />}
           </>
         )}
       </div>
