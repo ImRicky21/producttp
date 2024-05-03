@@ -1,5 +1,5 @@
 import Button from "@/components/ui/button";
-import Input from "@/components/ui/input";
+import Input from "@/components/ui/input/";
 import { Modal } from "@/components/ui/modals";
 import Select from "@/components/ui/select";
 import userService from "@/services/user";
@@ -60,7 +60,7 @@ function ModalUpdateUser(props: any) {
     >
       <form
         onSubmit={handleUpdateUser}
-        className="bg-teal-500  h-auto rounded-lg m-5 p-10 w-96"
+        className="bg-teal-500 h-auto rounded-lg m-5 p-10 w-96 flex flex-col gap-10"
       >
         <h1 className="text-center text-2xl">Update</h1>
         <Input

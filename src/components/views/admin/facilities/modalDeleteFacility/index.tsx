@@ -2,19 +2,20 @@ import Button from "@/components/ui/button";
 import { Modal } from "@/components/ui/modals";
 import { deleteFile } from "@/lib/firebase/service";
 import dosenService from "@/services/dosen";
+import facilityServices from "@/services/facility";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import Swal from "sweetalert2";
 
-function ModalDeleteDosen(props: any) {
-  const { deletedDosen, setDeletedDosen, setDosensData } = props;
+function ModalDeleteFacility(props: any) {
+  const { deletedFacility, setDeletedFacility, setFacilitiesData } = props;
   const [isLoading, setIsLoading] = useState(false);
   const session: any = useSession();
   const handleDelete = async () => {
     Swal.fire({
       icon: "warning",
       title: "Anda yakin?",
-      text: ` ${deletedDosen.name} akan dihapus`,
+      text: ` ${deletedFacility.title} akan dihapus`,
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
@@ -22,15 +23,16 @@ function ModalDeleteDosen(props: any) {
     }).then((result) => {
       console.log(result);
       if (result.isConfirmed) {
-        dosenService
-          .deleteDosen(deletedDosen.id, session.data?.accessToken)
+        console.log(deletedFacility.imageUrl);
+        facilityServices
+          .deleteFacility(deletedFacility.id, session.data?.accessToken)
           .then(async (result) => {
             console.log(result);
             if (result.status === 200) {
               setIsLoading(false);
               deleteFile(
-                `/images/dosens/${deletedDosen.id}/${
-                  deletedDosen.image.split("%2F")[3].split("?")[0]
+                `/images/facilities/${deletedFacility.id}/${
+                  deletedFacility.imageUrl.split("%2F")[3].split("?")[0]
                 }`,
                 async (status: boolean) => {
                   console.log(status);
@@ -38,26 +40,27 @@ function ModalDeleteDosen(props: any) {
                     Swal.fire({
                       timer: 5000,
                       icon: "success",
-                      text: `Dosen ${deletedDosen.name} telah di hapus`,
+                      text: `Dosen ${deletedFacility.title} telah di hapus`,
                     });
-                    const { data } = await dosenService.getAllDosens();
-                    setDosensData(data.data);
+                    const { data } = await facilityServices.getAllFacilities();
+                    setFacilitiesData(data.data);
+                    console.log(data.data);
                   }
                 }
               );
             }
           });
         setIsLoading(true);
-        setDeletedDosen({});
+        setDeletedFacility({});
       } else {
         setIsLoading(false);
-        setDeletedDosen({});
+        setDeletedFacility({});
       }
     });
   };
   return (
     <Modal
-      onClose={() => setDeletedDosen({})}
+      onClose={() => setDeletedFacility({})}
       className="w-screen h-screen flex justify-center align-middle z-50 fixed top-0 backdrop-blur-md"
     >
       <div className="grid grid-cols-1 gap-5 w-full p-4">
@@ -76,4 +79,4 @@ function ModalDeleteDosen(props: any) {
   );
 }
 
-export default ModalDeleteDosen;
+export default ModalDeleteFacility;

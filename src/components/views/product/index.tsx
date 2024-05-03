@@ -27,17 +27,19 @@ export default function ProductView(props: PropsTypes) {
 
   return (
     <>
-      <div className="text-center p-10 m-9 grid grid-cols-1 justify-items-center bg-slate-100">
+      <div className="text-center p-10 m-9 grid grid-cols-1 justify-items-center bg-slate-100 ">
         <div>{products.length}</div>
         <div className="flex flex-wrap gap-9 justify-items-center justify-center ">
           {currentPosts.length > 0 ? (
             productsData
               .filter((product) => product.status !== "draft")
-              .map((product) => (
+              .map((product, index) => (
                 <Card
                   key={product.id}
                   link={`/product/${product.id}`}
                   classname="text-center justify-center items-center h-96 md:w-4/5 flex p-3 m-6"
+                  data-aos="fade-up"
+                  data-aos-delay={`${(index + 1) * 100}`}
                 >
                   <div className="flex justify-self-end items-end justify-items-end  ">
                     <h2

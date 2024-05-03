@@ -20,7 +20,9 @@ export default function Home() {
       <Head>
         <title>Teknologi Pendidikan FKIP ULM</title>
       </Head>
-      <main className={`flex justify-between ${inter.className} `}>
+      <main
+        className={`flex justify-between bg-slate-200 scroll-smooth ${inter.className}`}
+      >
         <HomeView products={products} />
       </main>
     </>

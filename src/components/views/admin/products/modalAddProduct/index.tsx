@@ -1,6 +1,6 @@
 import InputFile from "@/components/ui/InputFile";
 import Button from "@/components/ui/button";
-import Input from "@/components/ui/input";
+import Input from "@/components/ui/input/";
 import { Modal } from "@/components/ui/modals";
 import Select from "@/components/ui/select";
 import TextArea from "@/components/ui/textarea";

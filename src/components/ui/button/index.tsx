@@ -6,6 +6,7 @@ type propsTypes = {
   className?: string;
   href?: string;
   disabled?: boolean;
+  onchange?: () => void;
 };
 export default function Button(props: propsTypes) {
   const { type, children, onClick, variant, className, href } = props;

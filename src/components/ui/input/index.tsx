@@ -7,6 +7,7 @@ type propsTypes = {
   disable?: boolean;
   className?: string;
   id?: string;
+  inputMode?: string;
   onChange?: () => void;
 };
 function Input(props: propsTypes) {

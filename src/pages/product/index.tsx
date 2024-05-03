@@ -18,6 +18,9 @@ export default function ProductsPage() {
       <Head>
         <title>Berita / Pengumuman</title>
       </Head>
+      <h1 className="text-center text-3xl font-bold uppercase text-teal-400 mt-10">
+        Berita / Pengumuman
+      </h1>
       <ProductView products={products} />
     </>
   );

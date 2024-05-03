@@ -50,11 +50,11 @@ const RegisterView = () => {
   };
 
   return (
-    <AuthLayout title="Register" link="/auth/login" linkText="login">
+    <AuthLayout title="Register" link="/auth/login" linkText="Login">
       <div>
         <form
           onSubmit={handleSubmit}
-          className="item-center grid grid-cols-1 gap-5"
+          className="item-center grid grid-cols-1 gap-10"
         >
           <Input label="email" name="email" type="email" placeholder="Email" />
           <Input
@@ -70,7 +70,11 @@ const RegisterView = () => {
             type="password"
             placeholder="Password"
           />
-          <Button type="submit" onClick={() => handleSubmit}>
+          <Button
+            type="submit"
+            onClick={() => handleSubmit}
+            className="bg-sky-400 rounded-lg"
+          >
             {isLoading ? "Loading..." : "Register"}
           </Button>
         </form>

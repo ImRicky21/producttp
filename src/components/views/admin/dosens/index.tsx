@@ -9,8 +9,6 @@ import Link from "next/link";
 import ModalDeleteDosen from "./modalDeleteDosen";
 import ModalUpdateDosen from "./modalUpdateDosen";
 import Loader from "@/components/fragment/loader";
-import Input from "@/components/ui/input";
-import { useSearchParams } from "next/navigation";
 
 type PropsTypes = {
   dosens: Dosens[];
@@ -89,7 +87,7 @@ function DosenAdminView(props: PropsTypes) {
                         <td className=" border border-slate-600">
                           {index + 1}
                         </td>
-                        <td className=" align-middle border border-slate-600">
+                        <td className=" align-middle border border-slate-600 justify-center items-center   ">
                           <Image
                             src={dosen.image}
                             alt={dosen.name}

@@ -1,7 +1,7 @@
 import Loader from "@/components/fragment/loader";
 import InputFile from "@/components/ui/InputFile";
 import Button from "@/components/ui/button";
-import Input from "@/components/ui/input";
+import Input from "@/components/ui/input/";
 import { Modal } from "@/components/ui/modals";
 import Select from "@/components/ui/select";
 import { uploadFile } from "@/lib/firebase/service";
@@ -16,6 +16,7 @@ const ModalUpdateDosen = (props: any) => {
   const [isLoading, setIsLoading] = useState(false);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const session: any = useSession();
+
   const uploadImage = (id: string, form: any) => {
     const file = form.image.files[0];
     const newName = "image-" + file.name.split(".")[1];
@@ -136,7 +137,7 @@ const ModalUpdateDosen = (props: any) => {
       className="w-screen h-screen flex justify-center align-middle z-50 fixed top-0 backdrop-blur-md"
     >
       <div className="w-full p-4 bg-tertiary rounded-md">
-        <h1 className="text-2xl text-center p-3 m-4">Tambah Dosen </h1>
+        <h1 className="text-2xl text-center p-3 m-4">Update Dosen </h1>
         <form onSubmit={hanldeUpdateDosen} className="grid grid-cols-2">
           <div className="grid grid-cols-1 gap-5 p-3">
             <div className="grid grid-cols-1 gap-8 ">

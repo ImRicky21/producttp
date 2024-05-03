@@ -7,6 +7,8 @@ import type { AppProps } from "next/app";
 import { Poppins } from "next/font/google";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -122,6 +124,13 @@ export default function App({
 }: AppProps) {
   const { pathname } = useRouter();
   const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      duration: 1000,
+      easing: "ease-in-cubic",
+    });
+  });
   useEffect(() => {
     setIsLoading(false);
   }, []);

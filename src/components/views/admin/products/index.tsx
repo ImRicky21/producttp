@@ -87,11 +87,13 @@ export default function AdminProductView(props: PropsTypes) {
                 currentPosts.map((product: any, index: number) => {
                   return (
                     <tr
-                      className="odd:bg-slate-50 even:bg-slate-300"
+                      className="odd:bg-slate-50 even:bg-slate-300 border border-solid border-slate-500"
                       key={product.id}
                     >
-                      <td className=" border border-slate-600">{index + 1}</td>
-                      <td className=" align-middle border border-slate-600 h- ">
+                      <td className=" border-x-slate-500 border ">
+                        {index + 1}
+                      </td>
+                      <td className=" align-middle flex justify-center items-center mt-4 border-x-slate-500 border">
                         <Image
                           src={product.image}
                           alt={product.title}
@@ -99,16 +101,16 @@ export default function AdminProductView(props: PropsTypes) {
                           height={100}
                         />
                       </td>
-                      <td className=" border border-slate-600 w-36">
+                      <td className=" border-x-slate-500 border w-36">
                         {product.title}
                       </td>
-                      <td className=" border border-slate-600 w-36">
+                      <td className="border-x-slate-500 border w-36">
                         {product.tag}
                       </td>
-                      <td className=" border border-slate-600 text-left line-clamp-6 w-72 h-32">
-                        {product.description}
+                      <td className=" border border-y-0 text-left line-clamp-6 w-72 h-32">
+                        <p>{product.description}</p>
                       </td>
-                      <td className=" border border-slate-600">
+                      <td className="border-x-slate-500 border ">
                         {product.date
                           ? product.date
                           : product.createdAt &&
@@ -121,11 +123,11 @@ export default function AdminProductView(props: PropsTypes) {
                               day: "numeric",
                             })}
                       </td>
-                      <td className=" border border-slate-600">
+                      <td className=" border-x-slate-500 border">
                         {product.createdBy}
                       </td>
                       <td
-                        className={`border border-slate-600 uppercase ${
+                        className={`border-x-slate-500 border border-y-0 uppercase ${
                           product.status !== "rilis"
                             ? "text-red-600 bg-rose-300"
                             : "text-green-600 bg-teal-300"

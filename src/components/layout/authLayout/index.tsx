@@ -16,7 +16,9 @@ function AuthLayout(props: Propstypes) {
       <div>{children}</div>
 
       <div>
-        <Link href={link}>{linkText}</Link>
+        <Link href={link} className="bg-teal-400 px-3 rounded-lg">
+          {linkText}
+        </Link>
       </div>
     </div>
   );

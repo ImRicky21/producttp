@@ -64,7 +64,7 @@ const LoginView = () => {
       <div className="item-center grid-cols-1 justify-center">
         <form
           onSubmit={handleSubmit}
-          className="item-center grid grid-cols-1 gap-5"
+          className="item-center grid grid-cols-1 gap-10"
         >
           <Input label="email" name="email" type="email" />
           <Input label="password" name="password" type="password" />

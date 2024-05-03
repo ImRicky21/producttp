@@ -20,16 +20,21 @@ const listSideBar = [
     url: "/admin/facilities",
     icon: "bxs-box",
   },
+  {
+    title: "Sipam",
+    url: "/admin/sipam",
+    icon: "bxs-box",
+  },
 ];
 function AdminLayout(props: Propstypes) {
   const { children } = props;
   return (
     <div
-      className="flex flex-row gap-11
+      className="flex flex-row gap-8
     "
     >
       <Sidebar lists={listSideBar} />
-      <div className="max-w-full mx-4 px-2">{children}</div>
+      <div className="w-full p-6 m-9">{children}</div>
     </div>
   );
 }

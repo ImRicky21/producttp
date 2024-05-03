@@ -8,20 +8,21 @@ import dosenService from "@/services/dosen";
 import { Dosens } from "@/types/dosen.type";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 import Swal from "sweetalert2";
 
 type PropsTypes = {
   setModalAddDosen: Dispatch<SetStateAction<boolean>>;
   setDosensData: Dispatch<SetStateAction<Dosens[]>>;
 };
+
 function ModalAddDosen(props: PropsTypes) {
   const { setModalAddDosen, setDosensData } = props;
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const session: any = useSession();
 
-  const uploadImage = (id: string, form: any) => {
+  const uploadImage = async (id: string, form: any) => {
     const file = form.image.files[0];
     const newName = "image-" + file.name.split(".")[1];
     if (file) {
@@ -56,6 +57,7 @@ function ModalAddDosen(props: PropsTypes) {
       );
     }
   };
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     const form: any = event.target as HTMLFormElement;
@@ -109,7 +111,7 @@ function ModalAddDosen(props: PropsTypes) {
               <Input
                 id="nip"
                 label="NIP"
-                type="text"
+                type="number"
                 name="nip"
                 placeholder="NIP"
               />
@@ -155,6 +157,7 @@ function ModalAddDosen(props: PropsTypes) {
                 setUploadedImage={setUploadedImage}
                 uploadedImage={uploadedImage}
               />
+
               <Select
                 label="Jabatan"
                 name="position"
