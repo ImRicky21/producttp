@@ -9,7 +9,9 @@ export default function VisiDanTujuanPage() {
       </Head>
       <div>
         <div className=" m-10 p-7 text-center">
-          <h1 className="text-3xl uppercase font-bold">visi keilmuan</h1>
+          <h1 className="text-3xl uppercase font-bold text-sky-400">
+            visi keilmuan
+          </h1>
           <h3 className="text-2xl">
             Mengembangkan Pembelajaran dan Riset yang terkemuka untuk
             menghasilkan teknolog pendidikan yang mampu mengembangkan,
@@ -18,7 +20,7 @@ export default function VisiDanTujuanPage() {
           </h3>
           <div className="m-4 p-4 text-justify text-lg">
             <ul className="list-decimal flex gap-3 flex-col">
-              <h2 className="text-2xl text-center uppercase font-bold">
+              <h2 className="text-2xl text-center uppercase font-bold text-sky-400">
                 penjelasan
               </h2>
               <li>
@@ -65,7 +67,9 @@ export default function VisiDanTujuanPage() {
             </ul>
           </div>
           <div>
-            <h1 className="text-3xl font-bold uppercase ">tujuan program</h1>
+            <h1 className="text-3xl font-bold uppercase text-sky-400">
+              tujuan program
+            </h1>
             <ul className="list-decimal text-justify text-lg m-4 p-3 flex gap-3 flex-col">
               <li>
                 Menghasilkan teknolog pendidikan yang mampu melakukan kajian

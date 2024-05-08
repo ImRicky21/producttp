@@ -15,6 +15,7 @@ export default function DosenView(props: PropsTypes) {
   useEffect(() => {
     setDosensData(dosens);
   }, [dosens]);
+  console.log(dosens);
 
   return (
     <>

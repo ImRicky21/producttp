@@ -12,6 +12,7 @@ export default function DosenPage() {
     };
     getAlldosens();
   }, []);
+  console.log(dosens);
   return (
     <>
       <Head>
@@ -19,7 +20,7 @@ export default function DosenPage() {
       </Head>
 
       <div className="flex flex-col mt-5">
-        <h1 className="text-5xl uppercase text-center font-semibold">
+        <h1 className="text-5xl uppercase text-center font-semibold text-sky-400 ">
           dosen dan staf
         </h1>
         <DosenView dosens={dosens} />

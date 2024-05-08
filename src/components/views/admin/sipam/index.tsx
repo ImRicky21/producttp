@@ -19,6 +19,7 @@ type PropsTypes = {
 export default function SipamView(props: PropsTypes) {
   const { sipams } = props;
   const [Datasipam, setDataSipam] = useState<Sipam[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const session: any = useSession();
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -80,8 +81,13 @@ export default function SipamView(props: PropsTypes) {
 
   useEffect(() => {
     setDataSipam(sipams);
+    setIsLoading(false);
   }, [sipams]);
+  console.log(Datasipam);
 
+  if (isLoading) {
+    console.log(Datasipam);
+  }
   return (
     <AdminLayout>
       <>

@@ -136,10 +136,10 @@ export default function App({
   }, []);
   return (
     <SessionProvider session={session}>
-      <div className={`${poppins.className} bg-slate-100 w-screen`}>
+      <div className={`${poppins.className} bg-slate-100 `}>
         {isLoading ? (
           <div className="loader text-center w-screen h-screen justify-items-center justify-center align-middle">
-            Loading...
+            loading pls wait
           </div>
         ) : (
           <>

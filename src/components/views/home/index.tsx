@@ -1,25 +1,53 @@
 import { Products } from "@/types/products.type";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import VisiKeilmuanView from "../visiKeilmuan";
 import Carousel from "@/components/fragment/carousel";
 import VideoProfileSection from "../videoProfile";
+import productService from "@/services/product";
+import ProductView from "../product";
+import DosenView from "../dosen";
+import { Dosens } from "@/types/dosen.type";
+import dosenService from "@/services/dosen";
+import SipamView from "../sipam";
+import { Sipam } from "@/types/sipam.type";
+import sipamService from "@/services/sipam";
+import BottomWave from "@/components/svg/bottomWave/indes";
+import UpperWave from "@/components/svg/upperWave";
+
 type PropsTypes = {
   products: Products[];
+  dosens: Dosens[];
+  sipams: Sipam[];
 };
 export default function HomeView(props: PropsTypes) {
-  const { products } = props;
-  const [productsData, setProductsData] = useState<Products[]>([]);
+  const { products, dosens, sipams } = props;
+  const [dataProduct, setDataProduct] = useState<Products[]>([]);
+  const [dataDosen, setDataDosen] = useState<Dosens[]>([]);
+  const [dataSipam, setDataSipam] = useState<Sipam[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    setProductsData(products);
-    setIsLoading(false);
-  }, [products]);
-  const images = products.map((product) => product.image).slice(-3);
+    const getAllProducts = async () => {
+      const { data: productData } = await productService.getAllProduct();
+      const { data: dosenData } = await dosenService.getAllDosens();
+      const { data: sipamData } = await sipamService.getAllSipam();
+      setDataProduct(productData.data);
+      setDataDosen(dosenData.data);
+      setDataSipam(sipamData.data);
+
+      setIsLoading(false);
+    };
+    getAllProducts();
+  }, [products, dosens, sipams]);
+  console.log(dataProduct);
+  console.log(dataDosen);
+  console.log(dataSipam);
+
+  const images = dataProduct.map((product) => product.image).slice(-3);
 
   return (
-    <div className="flex flex-col w-screen justify-between gap-12">
-      <div className="flex justify-between flex-col md:flex-row mx-5">
+    <div className="w-full gap-10 flex flex-col   ">
+      <div className="flex justify-between flex-col md:flex-row mx-5 h-screen mt-10">
         <div className="m-10">
           <h1
             className={`text-5xl font-bold uppercase text-teal-500 `}
@@ -54,12 +82,32 @@ export default function HomeView(props: PropsTypes) {
           )}
         </div>
       </div>
-
+      <BottomWave />
       <div>
         <VisiKeilmuanView />
       </div>
+      <UpperWave />
+
       <div>
         <VideoProfileSection />
+      </div>
+      <div>
+        <h3 className="text-3xl font-bold text-center text-teal-400">
+          Sistem Informasi Dan Pelayanan Akademik Mahasiswa
+        </h3>
+        <SipamView sipams={sipams} />
+      </div>
+      <div>
+        <h3 className="text-3xl font-bold text-center text-teal-400">
+          Dosen dan Staff
+        </h3>
+        <DosenView dosens={dataDosen} />
+      </div>
+      <div>
+        <h3 className="text-3xl font-bold text-center text-teal-400">
+          Berita Dan Pengumuman
+        </h3>
+        <ProductView products={dataProduct} />
       </div>
     </div>
   );

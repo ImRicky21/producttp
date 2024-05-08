@@ -12,6 +12,7 @@ export default function ProductsPage() {
     };
     getAllProducts();
   }, []);
+  console.log(products);
 
   return (
     <>

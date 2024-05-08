@@ -1,7 +1,7 @@
 export default function VisiKeilmuanView() {
   return (
     <>
-      <div className="flex flex-wrap w-screen justify-center gap-11">
+      <div className="flex flex-wrap w-full justify-center gap-11">
         <div className="grid md:grid-cols-2 gap-2 p-7">
           <div className="" data-aos="fade-up" data-aos-delay="300">
             <h2 className="text-3xl font-bold uppercase text-center m-5 text-teal-400">

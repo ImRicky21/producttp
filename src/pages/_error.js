@@ -7,18 +7,25 @@ function Error({ statusCode }) {
   return (
     <div className="text-center  h-screen">
       {statusCode ? (
-        <div
-          className="text-center flex flex-wrap justify-center items-center p-5 m-5 gap-8 text-white"
-          style={{
-            backgroundImage: `url(${pcRacoon.src})`,
-            backgroundRepeat: "repeat",
-          }}
-        >
-          <h1 className="text-5xl font-bold uppercase">
-            {`HEHEHE Kode ${statusCode} banh halaman belum dibikin lagi `}
+        <div className="text-center flex flex-wrap justify-center items-center p-5 m-5 gap-8 text-white">
+          <Image
+            src={pcRacoon}
+            alt="PedroRacoon"
+            width={800}
+            height={800}
+            className="hidden md:block absolute top-5 pt-8"
+          />
+          <h1 className="text-5xl font-bold text-teal-400 uppercase z-30">
+            {`HEHEHE Kode ${statusCode} halaman belum dibikin lagi `}
           </h1>
 
-          <Image src={racoon} alt="PedroRacoon" width={400} height={400} />
+          <Image
+            src={racoon}
+            alt="PedroRacoon"
+            width={800}
+            height={800}
+            className="md:hidden"
+          />
         </div>
       ) : (
         <div>
