@@ -75,7 +75,10 @@ const menuNavbar = [
         title: "Luaran",
         url: "/luaran",
       },
-      { title: "Jurnal", url: "/jurnal" },
+      {
+        title: "Jurnal",
+        url: "https://ppjp.ulm.ac.id/journals/index.php/j-instech",
+      },
     ],
   },
   {

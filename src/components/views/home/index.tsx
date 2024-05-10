@@ -12,8 +12,6 @@ import dosenService from "@/services/dosen";
 import SipamView from "../sipam";
 import { Sipam } from "@/types/sipam.type";
 import sipamService from "@/services/sipam";
-import BottomWave from "@/components/svg/bottomWave/indes";
-import UpperWave from "@/components/svg/upperWave";
 
 type PropsTypes = {
   products: Products[];
@@ -46,8 +44,8 @@ export default function HomeView(props: PropsTypes) {
   const images = dataProduct.map((product) => product.image).slice(-3);
 
   return (
-    <div className="w-full gap-10 flex flex-col   ">
-      <div className="flex justify-between flex-col md:flex-row mx-5 h-screen mt-10">
+    <div className="w-full flex flex-col">
+      <div className="flex justify-around flex-col md:flex-row mx-5 h-screen mt-10">
         <div className="m-10">
           <h1
             className={`text-5xl font-bold uppercase text-teal-500 `}
@@ -71,7 +69,7 @@ export default function HomeView(props: PropsTypes) {
           </h1>
         </div>
         <div
-          className="mx-5 md:w-2/5 justify-center justify-items-center align-middle mt-5"
+          className="mx-5 md:w-2/5  justify-center justify-items-center align-middle mt-5"
           data-aos="fade-up"
           data-aos-delay="500"
         >
@@ -82,28 +80,27 @@ export default function HomeView(props: PropsTypes) {
           )}
         </div>
       </div>
-      <BottomWave />
-      <div>
+
+      <div className="">
         <VisiKeilmuanView />
       </div>
-      <UpperWave />
 
-      <div>
+      <div className="bg-white">
         <VideoProfileSection />
       </div>
-      <div>
+      <div className="pt-10 m-6">
         <h3 className="text-3xl font-bold text-center text-teal-400">
           Sistem Informasi Dan Pelayanan Akademik Mahasiswa
         </h3>
         <SipamView sipams={sipams} />
       </div>
-      <div>
+      <div className="pt-10 mt-6">
         <h3 className="text-3xl font-bold text-center text-teal-400">
           Dosen dan Staff
         </h3>
         <DosenView dosens={dataDosen} />
       </div>
-      <div>
+      <div className="pt-10 m-6">
         <h3 className="text-3xl font-bold text-center text-teal-400">
           Berita Dan Pengumuman
         </h3>

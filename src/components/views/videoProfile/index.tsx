@@ -5,7 +5,7 @@ export default function VideoProfileSection() {
   const data = [{ Mahasiswa: 325 }, { Dosen: 8 }, { Tendik: 2 }];
   return (
     <>
-      <div className="flex flex-col md:flex-row justify-center gap-8 p-10 items-center">
+      <div className="flex flex-col md:flex-row justify-center gap-8 p-5 items-center">
         <div
           className="md:[height:400px] md:[width:1800px] m-3 p-4 bg-sky-400 rounded-lg"
           data-aos="fade-up"
@@ -39,7 +39,7 @@ export default function VideoProfileSection() {
                 </Link>
               </div>
               <div>
-                <div className=" text-lg font-bold text-center uppercase">
+                <div className=" text-lg font-bold text-center uppercase grid md:grid-cols-3">
                   {data.map((item: any) => {
                     const category = Object.keys(item)[0];
                     const value = item[category];

@@ -70,17 +70,17 @@ export default function NavbarMenu(props: Propstypes) {
               data-aos={hasAnimated ? "" : "fade-up"}
               data-aos-delay={`${index * 50}`}
             >
-              <Link className="text-center md:" href={list.url}>
+              <Link className="text-center " href={list.url}>
                 {list.title}
               </Link>
               {list.sub && list.sub.length > 0 && (
-                <ul className=" z-50 bg-slate-100 shadow-md md:absolute hidden group-hover:flex-col group-hover:flex justify-center rounded-lg">
+                <ul className=" z-50 bg-slate-100 shadow-md md:absolute hidden group-hover:flex-col group-hover:flex justify-center rounded-lg p-2">
                   {list.sub.map((sub) => (
                     <li
                       key={sub.title}
                       className="pb-3 hover:bg-slate-200 text-center transition-all ease-in-out rounded-md items-center"
                     >
-                      <Link className="" href={sub.url}>
+                      <Link className="px-5 py-2" href={sub.url}>
                         {sub.title}
                       </Link>
                     </li>
