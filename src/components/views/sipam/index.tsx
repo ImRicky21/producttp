@@ -24,9 +24,14 @@ export default function SipamView(props: PropsTypes) {
 
   return (
     <>
-      <div className=" flex flex-wrap justify-center align-middle items-center ">
-        {sipamData.map((sipam) => (
+      <div
+        className=" flex flex-wrap justify-center align-middle items-center "
+        data-aos="fade-up"
+      >
+        {sipamData.map((sipam, index) => (
           <Link
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
             href={`${sipam.link}`}
             target="_blank"
             key={sipam.id}

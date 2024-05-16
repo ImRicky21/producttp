@@ -101,7 +101,7 @@ export default function AdminProductView(props: PropsTypes) {
                           height={100}
                         />
                       </td>
-                      <td className=" border-x-slate-500 border w-36">
+                      <td className=" border-x-slate-500 border w-36  ">
                         {product.title}
                       </td>
                       <td className="border-x-slate-500 border w-36">

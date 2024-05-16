@@ -19,7 +19,10 @@ export default function DosenView(props: PropsTypes) {
 
   return (
     <>
-      <div className="flex flex-col justify-center align-middle items-center">
+      <div
+        className="flex flex-col justify-center align-middle items-center"
+        data-aos="fade-up"
+      >
         <div className="flex flex-wrap items-center justify-center p-4 m-5 w-4/5">
           {dosensData
             .sort(

@@ -2,7 +2,7 @@ import instace from "@/lib/axios/instance";
 
 const productService = {
   getAllProduct: () => instace.get("/api/product"),
-
+  getDetailProduct: (id: string) => instace.get(`/api/product/${id}`),
   addProduct: (data: any, token: string) =>
     instace.post("/api/product", data, {
       headers: {

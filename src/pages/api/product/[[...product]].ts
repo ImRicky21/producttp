@@ -3,6 +3,7 @@ import {
   addDataId,
   deleteData,
   retrieveData,
+  retrieveDataById,
   retrieveDataSortAsc,
   retrieveDataSortDesc,
   updateData,
@@ -15,8 +16,15 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "GET") {
-    const data = await retrieveDataSortDesc("news", "createdAt");
-    res.status(200).json({ message: "success", statusCode: 200, data: data });
+    const { product }: any = req.query;
+    console.log(product);
+    if (product && product[0]) {
+      const data = await retrieveDataById("news", product[0]);
+      res.status(200).json({ message: "success", statusCode: 200, data });
+    } else {
+      const data = await retrieveDataSortDesc("news", "createdAt");
+      res.status(200).json({ message: "success", statusCode: 200, data: data });
+    }
   } else if (req.method === "POST") {
     const token = req.headers.authorization?.split(" ")[1] || "";
     jwt.verify(
