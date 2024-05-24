@@ -100,7 +100,7 @@ const menuNavbar = [
       },
       {
         title: "Tracer Studi",
-        url: "/tracer-studi",
+        url: "https://tracerstudy.ulm.ac.id/",
       },
       {
         title: "Kepuasan Kerjasama",

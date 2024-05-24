@@ -11,9 +11,11 @@ type PropsTypes = {
 export default function DosenView(props: PropsTypes) {
   const { dosens } = props;
   const [dosensData, setDosensData] = useState<Dosens[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setDosensData(dosens);
+    setIsLoading(false);
   }, [dosens]);
   console.log(dosens);
 
@@ -30,8 +32,10 @@ export default function DosenView(props: PropsTypes) {
                 new Date(a.createdAt).getTime() -
                 new Date(b.createdAt).getTime()
             )
-            .map((dosen) => (
+            .map((dosen, index) => (
               <Card
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
                 key={dosen.id}
                 link="#"
                 classname="min-h-96 max-h-auto w-64 m-10 text-center justify-center items-center group transition-all ease-in-out relative"

@@ -25,6 +25,11 @@ const listSideBar = [
     url: "/admin/sipam",
     icon: "bxs-box",
   },
+  {
+    title: "Prestasi Mahasiswa",
+    url: "/admin/prestasi-mahasiswa",
+    icon: "bxs-box",
+  },
 ];
 function AdminLayout(props: Propstypes) {
   const { children } = props;

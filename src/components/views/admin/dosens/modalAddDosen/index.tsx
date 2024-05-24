@@ -57,10 +57,10 @@ function ModalAddDosen(props: PropsTypes) {
       );
     }
   };
-
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     const form: any = event.target as HTMLFormElement;
+
     if (
       form.fullname.value === "" ||
       form.nip.value === "" ||

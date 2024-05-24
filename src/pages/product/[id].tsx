@@ -8,10 +8,12 @@ import { useEffect, useState } from "react";
 const DetailProductPage = () => {
   const { id } = useRouter().query;
   const [product, setProduct] = useState<Products | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const getDetailProduct = async (id: string) => {
       const { data } = await productService.getDetailProduct(id);
       setProduct(data.data);
+      setIsLoading(false);
     };
     getDetailProduct(id as string);
   }, [id]);

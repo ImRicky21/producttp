@@ -1,13 +1,16 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import Loader from "../loader";
 
 interface CarouselProps {
   images: string[];
+  titles: string[];
 }
 
-const Carousel: React.FC<CarouselProps> = ({ images }) => {
+const Carousel: React.FC<CarouselProps> = ({ images, titles }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+
   const goToPrevious = () => {
     setCurrentImageIndex(
       currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1
@@ -25,15 +28,15 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
     return () => {
       clearInterval(slideInterval);
     };
-  }, [currentImageIndex]);
+  }, [currentImageIndex, goToNext]);
 
   useEffect(() => {
     setIsLoading(false);
   }, []);
 
   return (
-    <div className="relative md:w-3/4 w-full">
-      {isLoading && <div className="carousel-loading">Loading...</div>}
+    <div className="relative md:w-auto w-full">
+      {isLoading && <div className="carousel-loading"></div>}
       <div
         className={`carousel rounded-sm ${
           isLoading ? "animate-pulse" : "overflow-x-hidden"
@@ -47,14 +50,21 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
           }}
         >
           {images.map((image, index) => (
-            <div key={index} className={` w-full flex-shrink-0 aspect-video`}>
+            <div
+              key={index}
+              className="w-full flex-shrink-0 aspect-video group relative transition ease-in-out duration-300 justify-center align-middle"
+            >
               <Image
                 src={image}
                 alt={`Image ${index}`}
                 width={600}
                 height={600}
                 onLoad={() => setIsLoading(false)}
+                className="rounded-xl transition-transform duration-300 "
               />
+              <h2 className="absolute bottom-0 left-0 w-full text-center text-white bg-black bg-opacity-50 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out rounded-b-lg">
+                {titles[index]}
+              </h2>
             </div>
           ))}
         </div>

@@ -1,5 +1,4 @@
 import { Products } from "@/types/products.type";
-import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import VisiKeilmuanView from "../visiKeilmuan";
 import Carousel from "@/components/fragment/carousel";
@@ -12,6 +11,7 @@ import dosenService from "@/services/dosen";
 import SipamView from "../sipam";
 import { Sipam } from "@/types/sipam.type";
 import sipamService from "@/services/sipam";
+import Loader from "@/components/fragment/loader";
 
 type PropsTypes = {
   products: Products[];
@@ -37,11 +37,10 @@ export default function HomeView(props: PropsTypes) {
     };
     getAllProducts();
   }, [products, dosens, sipams]);
-  console.log(dataProduct);
-  console.log(dataDosen);
-  console.log(dataSipam);
 
   const images = dataProduct.map((product) => product.image).slice(-3);
+  const title = dataProduct.map((product) => product.title).slice(-3);
+  console.log(title);
 
   return (
     <div className="w-full flex flex-col">
@@ -74,9 +73,14 @@ export default function HomeView(props: PropsTypes) {
           data-aos-delay="500"
         >
           {isLoading ? (
-            <span className="bg-gray-300 h-72 w-full animate-pulse"></span>
+            <span className="bg-gray-300 h-72 w-full animate-pulse">
+              <div className="bg-gray-300 h-72 w-full animate-pulse">
+                loading
+                <Loader />
+              </div>
+            </span>
           ) : (
-            <Carousel images={images} />
+            <Carousel images={images} titles={title} />
           )}
         </div>
       </div>
@@ -96,8 +100,12 @@ export default function HomeView(props: PropsTypes) {
       </div>
       <div className="pt-10 mt-6">
         <h3 className="text-3xl font-bold text-center text-teal-400">
-          Dosen dan Staff
+          Dosen dan Tenaga Kependidikan
         </h3>
+        <p className="text-center">
+          Berikut merupakan tenaga pendidik dan tenaga kependidikan yang ada di
+          program studi Teknologi Pendidikan
+        </p>
         <DosenView dosens={dataDosen} />
       </div>
       <div className="pt-10 m-6">
