@@ -109,15 +109,6 @@ export default function SipamView(props: PropsTypes) {
                 name="link"
                 placeholder="Enter link"
               />
-
-              {/* <Select
-                name="label"
-                label="Status"
-                options={[
-                  { label: "Tampilkan", value: "tampilkan" },
-                  { label: "Simpan", value: "simpan" },
-                ]}
-              /> */}
               <Button
                 type="submit"
                 className=" w-1/4 p-3 mt-3 bg-sky-500 rounded-md text-white transition hover:bg-sky-600 ease-in-out"
