@@ -1,6 +1,8 @@
 import Sidebar from "@/components/fragment/sidebar";
 import { url } from "inspector";
+import { useRouter } from "next/router";
 import { title } from "process";
+import { useEffect, useState } from "react";
 type Propstypes = {
   children: React.ReactNode;
   className?: string;
@@ -31,15 +33,35 @@ const listSideBar = [
     icon: "bxs-box",
   },
 ];
+
 function AdminLayout(props: Propstypes) {
   const { children } = props;
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleStart = () => setIsLoading(true);
+    const handleComplete = () => setIsLoading(false);
+
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
+
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
+  }, [router]);
   return (
     <div
       className="flex flex-row gap-8
     "
     >
       <Sidebar lists={listSideBar} />
-      <div className="w-full p-6 m-9">{children}</div>
+      <div className="w-full p-6 m-9">
+        {isLoading ? "loading tunggu sebentar" : children}
+      </div>
     </div>
   );
 }
