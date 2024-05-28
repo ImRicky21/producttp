@@ -5,6 +5,7 @@ import Input from "@/components/ui/input";
 import prestasiMahasiswaService from "@/services/prestasimahasiswa";
 import { Prestasi } from "@/types/prestasi.type";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
@@ -16,6 +17,8 @@ type PropsTypes = {
 export default function PrestasiMahasiswaAdminView(props: PropsTypes) {
   const { prestasi } = props;
   const [prestasiData, setPrestasiData] = useState<Prestasi[]>([]);
+  const [updatedDosen, setUpdatedDosen] = useState<any>({});
+
   const [isLoading, setIsLoading] = useState(true);
   const session: any = useSession();
 
@@ -119,14 +122,6 @@ export default function PrestasiMahasiswaAdminView(props: PropsTypes) {
                   placeholder="Sertifikat Lomba"
                 />
 
-                {/* <Select
-                name="label"
-                label="Status"
-                options={[
-                  { label: "Tampilkan", value: "tampilkan" },
-                  { label: "Simpan", value: "simpan" },
-                ]}
-              /> */}
                 <Button
                   type="submit"
                   className=" w-1/4 p-3 mt-3 bg-sky-500 rounded-md text-white transition hover:bg-sky-600 ease-in-out"
@@ -159,8 +154,12 @@ export default function PrestasiMahasiswaAdminView(props: PropsTypes) {
                   <td>{data.name}</td>
                   <td>{data.title}</td>
                   <td>{data.level}</td>
-                  <td className="text-ellipsis">{data.link}</td>
-                  <td className="flex gap-3">
+                  <td className="text-ellipsis">
+                    <Link href={data.link} className="text-red-600">
+                      klik Disini
+                    </Link>
+                  </td>
+                  <td className="flex gap-3 justify-center">
                     <Button
                       type="button"
                       onClick={() => deleteData(data.id)}

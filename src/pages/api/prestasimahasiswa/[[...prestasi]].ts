@@ -92,5 +92,39 @@ export default async function handler(
         }
       }
     );
+  } else if (req.method === "PUT") {
+    const { prestasi }: any = req.query;
+    const { data } = req.body;
+    const token = req.headers.authorization?.split(" ")[1] || "";
+    jwt.verify(
+      token,
+      process.env.NEXTAUTH_SECRET || "",
+      async (error: any, decoded: any) => {
+        if (decoded && decoded.role === "admin") {
+          await updateData(
+            "PrestasiMahasiswa",
+            prestasi[0],
+            data,
+            (status: boolean) => {
+              if (status) {
+                res
+                  .status(200)
+                  .json({ status: true, message: "success", statusCode: 200 });
+              } else {
+                res
+                  .status(400)
+                  .json({ status: false, message: "failed", statusCode: 400 });
+              }
+            }
+          );
+        } else {
+          res.status(400).json({
+            status: false,
+            message: "access denied",
+            statusCode: 400,
+          });
+        }
+      }
+    );
   }
 }

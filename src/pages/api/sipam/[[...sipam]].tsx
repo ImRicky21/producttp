@@ -51,6 +51,7 @@ export default async function handler(
   } else if (req.method === "PUT") {
     const { sipam }: any = req.query;
     const { data } = req.body;
+    console.log(sipam);
     const token = req.headers.authorization?.split(" ")[1] || "";
     jwt.verify(
       token,

@@ -10,8 +10,10 @@ import { Sipam } from "@/types/sipam.type";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import ModalUpdateSipam from "./modalUpdateSipam";
 
 type PropsTypes = {
   sipams: Sipam[];
@@ -20,15 +22,12 @@ export default function SipamView(props: PropsTypes) {
   const { sipams } = props;
   const [Datasipam, setDataSipam] = useState<Sipam[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [updatedSipam, setUpdatedSipam] = useState<any>({});
   const session: any = useSession();
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     const form: any = event.target as HTMLFormElement;
-    if (
-      form.title.value === "" ||
-      form.link.value === ""
-      // form.label.value === ""
-    ) {
+    if (form.title.value === "" || form.link.value === "") {
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -39,7 +38,6 @@ export default function SipamView(props: PropsTypes) {
     let data = {
       title: form.title.value,
       link: form.link.value,
-      // label: form.label.value,
     };
 
     const result = await sipamService.addSipam(data, session.data?.accessToken);
@@ -89,8 +87,8 @@ export default function SipamView(props: PropsTypes) {
     console.log(Datasipam);
   }
   return (
-    <AdminLayout>
-      <>
+    <>
+      <AdminLayout>
         <div className="text-center p-5 font-bold text-2xl text-teal-400">
           <h1>SISTEM INFORMASI DAN PELAYANAN AKADEMIK MAHASISWA</h1>
         </div>
@@ -137,12 +135,18 @@ export default function SipamView(props: PropsTypes) {
                   <td className="border border-x-2">{index + 1}</td>
                   <td className="border border-x-2">{sipam.title}</td>
                   <td className="border border-x-2">{sipam.link}</td>
-                  <td>
+                  <td className="flex flex-wrap justify-around gap-2 justify-items-center text-center">
                     <Button
                       type="button"
                       onClick={() => handleDelete(sipam.id)}
                     >
                       <FaTrash className="text-red-500 text-3xl" />
+                    </Button>
+                    <Button
+                      type="button"
+                      onClick={() => setUpdatedSipam(sipam)}
+                    >
+                      <FaEdit className="text-sky-500 text-3xl" />
                     </Button>
                   </td>
                 </tr>
@@ -150,7 +154,14 @@ export default function SipamView(props: PropsTypes) {
             </tbody>
           </table>
         </div>
-      </>
-    </AdminLayout>
+      </AdminLayout>
+      {Object.keys(updatedSipam).length > 0 && (
+        <ModalUpdateSipam
+          updatedSipam={updatedSipam}
+          setDataSipam={setDataSipam}
+          setUpdatedSipam={setUpdatedSipam}
+        />
+      )}
+    </>
   );
 }
