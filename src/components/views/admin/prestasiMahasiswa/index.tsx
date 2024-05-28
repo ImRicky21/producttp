@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import ModalUpdatePrestasi from "./modalUpdatePrestasi";
 
 type PropsTypes = {
   prestasi: Prestasi[];
@@ -17,8 +18,7 @@ type PropsTypes = {
 export default function PrestasiMahasiswaAdminView(props: PropsTypes) {
   const { prestasi } = props;
   const [prestasiData, setPrestasiData] = useState<Prestasi[]>([]);
-  const [updatedDosen, setUpdatedDosen] = useState<any>({});
-
+  const [updatedPrestasi, setUpdatedPrestasi] = useState<any>({});
   const [isLoading, setIsLoading] = useState(true);
   const session: any = useSession();
 
@@ -82,8 +82,8 @@ export default function PrestasiMahasiswaAdminView(props: PropsTypes) {
   }, [prestasi]);
 
   return (
-    <AdminLayout>
-      <>
+    <>
+      <AdminLayout>
         <div>
           <h1 className="text-center text-2xl">Prestasi Mahasiswa</h1>
         </div>
@@ -159,7 +159,7 @@ export default function PrestasiMahasiswaAdminView(props: PropsTypes) {
                       klik Disini
                     </Link>
                   </td>
-                  <td className="flex gap-3 justify-center">
+                  <td className="flex gap-3 justify-center my-3">
                     <Button
                       type="button"
                       onClick={() => deleteData(data.id)}
@@ -169,7 +169,7 @@ export default function PrestasiMahasiswaAdminView(props: PropsTypes) {
                     </Button>
                     <Button
                       type="button"
-                      onClick={() => {}}
+                      onClick={() => setUpdatedPrestasi(prestasi)}
                       className="text-center p-3 bg-sky-500 rounded-md text-white transition hover:bg-sky-600 ease-in-out"
                     >
                       <FaEdit />
@@ -180,7 +180,14 @@ export default function PrestasiMahasiswaAdminView(props: PropsTypes) {
             </tbody>
           </table>
         </div>
-      </>
-    </AdminLayout>
+      </AdminLayout>
+      {Object.keys(updatedPrestasi).length > 0 && (
+        <ModalUpdatePrestasi
+          updatedPrestasi={updatedPrestasi}
+          setUpdatedPrestasi={setUpdatedPrestasi}
+          prestasiData={prestasiData}
+        />
+      )}
+    </>
   );
 }

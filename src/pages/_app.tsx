@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Grid } from "react-loader-spinner";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -142,7 +143,16 @@ export default function App({
       <div className={`${poppins.className} bg-slate-100 `}>
         {isLoading ? (
           <div className="loader text-center w-screen h-screen justify-items-center justify-center align-middle">
-            loading pls wait
+            <Grid
+              visible={true}
+              height="80"
+              width="80"
+              color="#4fa94d"
+              ariaLabel="grid-loading"
+              radius="12.5"
+              wrapperStyle={{}}
+              wrapperClass="grid-wrapper"
+            />
           </div>
         ) : (
           <>

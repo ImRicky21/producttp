@@ -15,6 +15,8 @@ import InputFile from "@/components/ui/InputFile";
 import Select from "@/components/ui/select";
 import { deleteFile, uploadFile } from "@/lib/firebase/service";
 import ModalDeleteFacility from "./modalDeleteFacility";
+import { FaEdit } from "react-icons/fa";
+import ModalUpdateFacility from "./modalUpdateFacility";
 
 type PropsTypes = {
   facilities: Facilities[];
@@ -25,6 +27,7 @@ export default function FacilitiesAdnimView(props: PropsTypes) {
   const [isLoading, setIsLoading] = useState(false);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const [deletedFacility, setDeletedFacility] = useState<any>({});
+  const [updatedFacility, setUpdatedFacility] = useState<any>({});
 
   const session: any = useSession();
 
@@ -202,12 +205,20 @@ export default function FacilitiesAdnimView(props: PropsTypes) {
                     <td>{facility.description}</td>
                     <td>{`${facility.label}`}</td>
                     <td>
-                      <Button
-                        type="button"
-                        onClick={() => setDeletedFacility(facility)}
-                      >
-                        <FaTrash className="text-red-500 text-3xl" />
-                      </Button>
+                      <div className="flex justify-around flex-wrap">
+                        <Button
+                          type="button"
+                          onClick={() => setDeletedFacility(facility)}
+                        >
+                          <FaTrash className="text-red-500 text-3xl" />
+                        </Button>
+                        <Button
+                          type="button"
+                          onClick={() => setUpdatedFacility(facility)}
+                        >
+                          <FaEdit className="text-sky-500 text-3xl" />
+                        </Button>
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -221,6 +232,13 @@ export default function FacilitiesAdnimView(props: PropsTypes) {
           setFacilitiesData={setFacilitiesData}
           setDeletedFacility={setDeletedFacility}
           deletedFacility={deletedFacility}
+        />
+      )}
+      {Object.keys(updatedFacility).length > 0 && (
+        <ModalUpdateFacility
+          setFacilitiesData={setFacilitiesData}
+          setUpdatedFacility={setUpdatedFacility}
+          updatedFacility={updatedFacility}
         />
       )}
     </>

@@ -53,8 +53,8 @@ export default function DosenView(props: PropsTypes) {
                 </div>
                 <div className="rounded-lg text-white group mt-4 absolute h-full -top-4 left-0 right-0 bottom-0 bg-black bg-opacity-75 opacity-0 hover:opacity-100 transition ease-in-out flex flex-col justify-center items-center">
                   <div className="text-center flex flex-col">
-                    <h1 className="inline-block">{dosen.name}</h1>
-                    <p className="inline-block">{dosen.position}</p>
+                    <h1 className="inline-block capitalize">{dosen.name}</h1>
+                    <p className="inline-block capitalize">{dosen.position}</p>
                     <p className="inline-block">{dosen.nip}</p>
                   </div>
                   <div className="inline-block ">

@@ -47,7 +47,7 @@ export default function HomeView(props: PropsTypes) {
       <div className="flex justify-around flex-col md:flex-row mx-5 h-screen mt-10">
         <div className="m-10">
           <h1
-            className={`text-5xl font-bold uppercase text-teal-500 `}
+            className={`text-5xl font-bold uppercase text-teal-400 `}
             data-aos="fade-up"
           >
             Teknologi Pendidikan
