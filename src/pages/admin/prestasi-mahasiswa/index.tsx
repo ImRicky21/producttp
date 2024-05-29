@@ -16,7 +16,6 @@ export default function PrestasiMahasiswaAdminPage() {
     };
     getAllPrestasi();
   }, []);
-  console.log(prestasi);
   return (
     <>
       <Head>

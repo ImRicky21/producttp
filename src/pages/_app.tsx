@@ -140,9 +140,13 @@ export default function App({
   }, []);
   return (
     <SessionProvider session={session}>
-      <div className={`${poppins.className} bg-slate-100 `}>
+      <div
+        className={`${poppins.className} bg-slate-100 ${
+          isLoading ? "h-screen" : ""
+        }`}
+      >
         {isLoading ? (
-          <div className="loader text-center w-screen h-screen justify-items-center justify-center align-middle">
+          <div className="flex justify-center items-center h-full">
             <Grid
               visible={true}
               height="80"

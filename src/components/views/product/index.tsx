@@ -15,7 +15,6 @@ export default function ProductView(props: PropsTypes) {
       className="text-center grid grid-cols-1 justify-items-center"
       data-aos="fade-up"
     >
-      <div>{products.length}</div>
       <div className="flex flex-wrap gap-9 justify-items-center justify-center">
         {products
           .filter((product) => product.status !== "draft")

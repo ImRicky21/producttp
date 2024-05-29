@@ -2,7 +2,14 @@ import Link from "next/link";
 import LogoULm from "../../../../public/icon/logo-ULM.png";
 import LogoTP from "../../../../public/icon/logo-Teknologi-Pendidikan-FKIP-ULM.png";
 import Image from "next/image";
-import { FaInstagram, FaWeebly, FaYoutube } from "react-icons/fa6";
+import {
+  FaComputer,
+  FaDiagramNext,
+  FaInstagram,
+  FaReact,
+  FaWeebly,
+  FaYoutube,
+} from "react-icons/fa6";
 import { title } from "process";
 import { link } from "fs";
 
@@ -40,7 +47,7 @@ export default function Footer() {
           </div>
 
           <div className="">
-            <h3 className="font-bold">Program Studi Teknologi Pendidikan</h3>
+            <h3 className="font-bold ">Program Studi Teknologi Pendidikan</h3>
             <Link
               href={
                 "https://www.google.com/maps/place/Prodi+Teknologi+Pendidikan+FKIP+ULM/@-3.2995525,114.5859366,15z/data=!4m2!3m1!1s0x0:0x414e05913953224c?sa=X&ved=1t:2428&ictx=111"
@@ -60,6 +67,9 @@ export default function Footer() {
               target="_blank"
             >
               <FaYoutube className="text-5xl text-red-600" />
+            </Link>
+            <Link href={"https://tp.fkip.ulm.ac.id/"}>
+              <FaReact className="text-5xl text-blue-600" />
             </Link>
           </div>
         </div>

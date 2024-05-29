@@ -43,7 +43,7 @@ export default function PrestasiMahasiswaAdminView(props: PropsTypes) {
       form.reset();
       Swal.fire({
         icon: "success",
-        title: "Success",
+        title: "Tambah Prestasi Mahasiswa Berhasil",
       });
       console.log(data.data);
     }
@@ -51,13 +51,13 @@ export default function PrestasiMahasiswaAdminView(props: PropsTypes) {
 
   const deleteData = async (id: string) => {
     const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Data akan dihapus",
+      text: "Data akan dihapus dan tidak bisa dikembalikan",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Ya, hapus data!",
     });
 
     if (result.isConfirmed) {

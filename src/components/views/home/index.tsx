@@ -12,6 +12,7 @@ import SipamView from "../sipam";
 import { Sipam } from "@/types/sipam.type";
 import sipamService from "@/services/sipam";
 import Loader from "@/components/fragment/loader";
+import WaveUpperRight from "@/components/svg/upper";
 
 type PropsTypes = {
   products: Products[];
@@ -40,12 +41,18 @@ export default function HomeView(props: PropsTypes) {
 
   const images = dataProduct.map((product) => product.image).slice(-3);
   const title = dataProduct.map((product) => product.title).slice(-3);
-  console.log(title);
 
   return (
-    <div className="w-full flex flex-col">
-      <div className="flex justify-around flex-col md:flex-row mx-5 h-screen mt-10">
-        <div className="m-10">
+    <div className="w-full flex flex-col scroll-smooth">
+      <div className="w-full absolute  " data-aos="fade-up">
+        <WaveUpperRight className="fill-teal-300" />
+      </div>
+
+      <div className="flex justify-around flex-col md:flex-row h-full my-10 md:mt-32 md:mb-40   ">
+        <div className="m-10 flex flex-wrap flex-col justify-center">
+          <p className="uppercase text-teal-400 font-bold" data-aos="fade-up">
+            Selamat Datang Di Program Studi
+          </p>
           <h1
             className={`text-5xl font-bold uppercase text-teal-400 `}
             data-aos="fade-up"
@@ -53,14 +60,14 @@ export default function HomeView(props: PropsTypes) {
             Teknologi Pendidikan
           </h1>
           <h1
-            className="font-bold text-justify text-2xl text-slate-700"
+            className="font-semibold text-justify text-2xl text-slate-950"
             data-aos="fade-up"
             data-aos-delay="300"
           >
             Fakultas Keguruan dan Ilmu Pendidikan
           </h1>
           <h1
-            className="font-bold text-justify text-2xl text-slate-700"
+            className="font-bold text-justify text-2xl text-slate-950"
             data-aos="fade-up"
             data-aos-delay="400"
           >
@@ -100,9 +107,9 @@ export default function HomeView(props: PropsTypes) {
       </div>
       <div className="pt-10 mt-6">
         <h3 className="text-3xl font-bold text-center text-teal-400">
-          Dosen dan Tenaga Kependidikan
+          Dosen Dan Tenaga Kependidikan
         </h3>
-        <p className="text-center">
+        <p className="text-center text-teal-400 capitalize">
           Berikut merupakan tenaga pendidik dan tenaga kependidikan yang ada di
           program studi Teknologi Pendidikan
         </p>
@@ -112,6 +119,9 @@ export default function HomeView(props: PropsTypes) {
         <h3 className="text-3xl font-bold text-center text-teal-400">
           Berita Dan Pengumuman
         </h3>
+        <p className="capitalize text-center text-teal-400 text-lg">
+          Update berita dan pengumuman terkini{" "}
+        </p>
         <ProductView products={dataProduct} />
       </div>
     </div>

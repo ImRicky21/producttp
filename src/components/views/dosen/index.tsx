@@ -17,7 +17,6 @@ export default function DosenView(props: PropsTypes) {
     setDosensData(dosens);
     setIsLoading(false);
   }, [dosens]);
-  console.log(dosens);
 
   return (
     <>

@@ -40,8 +40,11 @@ export default function NavbarMenu(props: Propstypes) {
       className={`flex justify-between ${
         isOpen ? "" : " items-center "
       } px-5 sticky top-0 z-50 bg-slate-200 transition-all ease-in-out ${
-        isScrolled ? "bg-opacity-80 backdrop-blur-md shadow-md" : ""
+        isScrolled
+          ? "bg-opacity-80 backdrop-blur-md shadow-md"
+          : "bg-teal-300 text-white"
       }`}
+      data-aos="fade-up"
     >
       <div className=" p-3">
         {
