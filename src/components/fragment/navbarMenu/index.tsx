@@ -40,9 +40,7 @@ export default function NavbarMenu(props: Propstypes) {
       className={`flex justify-between ${
         isOpen ? "" : " items-center "
       } px-5 sticky top-0 z-50 bg-slate-200 transition-all ease-in-out ${
-        isScrolled
-          ? "bg-opacity-80 backdrop-blur-md shadow-md"
-          : "bg-teal-300 text-white"
+        isScrolled ? "bg-opacity-80 backdrop-blur-md shadow-md" : "bg-teal-300 "
       }`}
       data-aos="fade-up"
     >
@@ -73,7 +71,14 @@ export default function NavbarMenu(props: Propstypes) {
               data-aos={hasAnimated ? "" : "fade-up"}
               data-aos-delay={`${index * 50}`}
             >
-              <Link className="text-center " href={list.url}>
+              <Link
+                className={`text-center   ${
+                  isScrolled
+                    ? "transition ease-in-out"
+                    : "transition ease-in-out text-white"
+                }`}
+                href={list.url}
+              >
                 {list.title}
               </Link>
               {list.sub && list.sub.length > 0 && (
