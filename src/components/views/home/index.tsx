@@ -82,10 +82,7 @@ export default function HomeView(props: PropsTypes) {
         >
           {isLoading ? (
             <span className="bg-gray-300 h-72 w-full animate-pulse">
-              <div className="bg-gray-300 h-72 w-full animate-pulse">
-                loading
-                <Loader />
-              </div>
+              <div className="bg-gray-300 h-72 w-full animate-pulse"></div>
             </span>
           ) : (
             <Carousel images={images} titles={title} />
@@ -116,7 +113,7 @@ export default function HomeView(props: PropsTypes) {
         </p>
         <DosenView dosens={dataDosen} />
       </div>
-      <div>
+      <div className="mt-10">
         <h3 className="text-center text-3xl text-teal-400 font-bold">
           Karya Mahasiswa
         </h3>

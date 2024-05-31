@@ -37,9 +37,10 @@ const KaryaMahasiswa: React.FC = () => {
             return (
               <div
                 key={index}
-                className="w-full flex-shrink-0 aspect-video group relative transition ease-in-out duration-300 justify-center align-middle"
+                className="w-full flex-shrink-0 aspect-video group 
+                md:pt-40 relative transition ease-in-out duration-300 justify-center align-middle items-center "
               >
-                <div className="flex gap-2 border border-solid border-slate-300">
+                <div className="flex gap-2 ">
                   {/* Render the current item and the next two items */}
                   {data.slice(index, index + 3).map((subItem, subIndex) => (
                     <iframe
