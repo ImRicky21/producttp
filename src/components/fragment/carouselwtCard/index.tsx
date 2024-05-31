@@ -1,25 +1,28 @@
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { Children, useEffect, useState } from "react";
 import Loader from "../loader";
 
-interface CarouselProps {
-  images: string[];
-  titles: string[];
-}
+type PropsType = {
+  children?: React.ReactNode;
+  classname?: string;
+  link?: string;
+};
 
-const Carousel: React.FC<CarouselProps> = ({ images, titles }) => {
+const CarouselWithChildren = (props: any) => {
+  const { children, classname, link } = props;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const childArray = React.Children.toArray(children);
 
   const goToPrevious = () => {
     setCurrentImageIndex(
-      currentImageIndex === 0 ? images?.length - 1 : currentImageIndex - 1
+      currentImageIndex === 0 ? childArray.length - 1 : currentImageIndex - 1
     );
   };
 
   const goToNext = () => {
     setCurrentImageIndex(
-      currentImageIndex === images?.length - 1 ? 0 : currentImageIndex + 1
+      currentImageIndex === childArray.length - 1 ? 0 : currentImageIndex + 1
     );
   };
 
@@ -49,22 +52,12 @@ const Carousel: React.FC<CarouselProps> = ({ images, titles }) => {
             transition: "transform 0.5s ease",
           }}
         >
-          {images?.map((image, index) => (
+          {childArray.map((child, index) => (
             <div
               key={index}
               className="w-full flex-shrink-0 aspect-video group relative transition ease-in-out duration-300 justify-center align-middle"
             >
-              <Image
-                src={image}
-                alt={`Image ${index}`}
-                width={600}
-                height={600}
-                onLoad={() => setIsLoading(false)}
-                className="rounded-xl transition-transform duration-300 "
-              />
-              <h2 className="absolute bottom-0 left-0 w-full text-center text-white bg-black bg-opacity-50 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out rounded-b-lg">
-                {titles[index]}
-              </h2>
+              {child}
             </div>
           ))}
         </div>
@@ -85,4 +78,4 @@ const Carousel: React.FC<CarouselProps> = ({ images, titles }) => {
   );
 };
 
-export default Carousel;
+export default CarouselWithChildren;

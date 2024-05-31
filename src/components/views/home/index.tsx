@@ -13,6 +13,7 @@ import { Sipam } from "@/types/sipam.type";
 import sipamService from "@/services/sipam";
 import Loader from "@/components/fragment/loader";
 import WaveUpperRight from "@/components/svg/upper";
+import KaryaMahasiswaView from "../karyaMahasiswa";
 
 type PropsTypes = {
   products: Products[];
@@ -114,6 +115,18 @@ export default function HomeView(props: PropsTypes) {
           program studi Teknologi Pendidikan
         </p>
         <DosenView dosens={dataDosen} />
+      </div>
+      <div>
+        <h3 className="text-center text-3xl text-teal-400 font-bold">
+          Karya Mahasiswa
+        </h3>
+        <p className="text-center text-teal-400 capitalize">
+          Berikut Merupakan hasil karya dari mahasiswa teknologi pendidikan FKIP
+          ULM
+        </p>
+        <div className="w-full h-full px-7">
+          <KaryaMahasiswaView />
+        </div>
       </div>
       <div className="pt-10 m-6">
         <h3 className="text-3xl font-bold text-center text-teal-400">
