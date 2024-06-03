@@ -9,6 +9,7 @@ function Error({ statusCode }) {
       {statusCode ? (
         <div className="text-center flex flex-wrap justify-center items-center p-5 m-5 gap-8 text-white">
           <Image
+            loading="lazy"
             src={pcRacoon}
             alt="PedroRacoon"
             width={800}
@@ -20,6 +21,7 @@ function Error({ statusCode }) {
           </h1>
 
           <Image
+            loading="lazy"
             src={racoon}
             alt="PedroRacoon"
             width={800}

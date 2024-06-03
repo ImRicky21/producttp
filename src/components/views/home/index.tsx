@@ -11,7 +11,6 @@ import dosenService from "@/services/dosen";
 import SipamView from "../sipam";
 import { Sipam } from "@/types/sipam.type";
 import sipamService from "@/services/sipam";
-import Loader from "@/components/fragment/loader";
 import WaveUpperRight from "@/components/svg/upper";
 import KaryaMahasiswaView from "../karyaMahasiswa";
 
@@ -22,10 +21,11 @@ type PropsTypes = {
 };
 export default function HomeView(props: PropsTypes) {
   const { products, dosens, sipams } = props;
+  const [isLoading, setIsLoading] = useState(true);
   const [dataProduct, setDataProduct] = useState<Products[]>([]);
   const [dataDosen, setDataDosen] = useState<Dosens[]>([]);
   const [dataSipam, setDataSipam] = useState<Sipam[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const getAllProducts = async () => {
       const { data: productData } = await productService.getAllProduct();
@@ -41,7 +41,7 @@ export default function HomeView(props: PropsTypes) {
   }, [products, dosens, sipams]);
 
   const images = dataProduct.map((product) => product.image).slice(-3);
-  const title = dataProduct.map((product) => product.title).slice(-3);
+  const titles = dataProduct.map((product) => product.title).slice(-3);
 
   return (
     <div className="w-full flex flex-col scroll-smooth">
@@ -51,6 +51,7 @@ export default function HomeView(props: PropsTypes) {
 
       <div className="flex justify-around flex-col md:flex-row h-full my-10 md:mt-32 md:mb-40   ">
         <div className="m-10 flex flex-wrap flex-col justify-center">
+          <div className="bg-teal-300 h-1 rounded-lg wipeIn w-1/2"></div>
           <p className="uppercase text-teal-400 font-bold" data-aos="fade-up">
             Selamat Datang Di Program Studi
           </p>
@@ -85,7 +86,7 @@ export default function HomeView(props: PropsTypes) {
               <div className="bg-gray-300 h-72 w-full animate-pulse"></div>
             </span>
           ) : (
-            <Carousel images={images} titles={title} />
+            <Carousel images={images} titles={titles} />
           )}
         </div>
       </div>

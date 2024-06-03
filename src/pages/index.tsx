@@ -36,15 +36,15 @@ export default function Home() {
 
   useEffect(() => {
     console.log(products);
-  }, [products]);
+  }, [products, dosens, sipams]);
 
-  useEffect(() => {
-    console.log(dosens);
-  }, [dosens]);
+  // useEffect(() => {
+  //   console.log(dosens);
+  // }, [dosens]);
 
-  useEffect(() => {
-    console.log(sipams);
-  }, [sipams]);
+  // useEffect(() => {
+  //   console.log(sipams);
+  // }, [sipams]);
 
   console.log(sipams);
   console.log(products);
@@ -53,6 +53,13 @@ export default function Home() {
     <>
       <Head>
         <title>Teknologi Pendidikan FKIP ULM</title>
+        <link rel="preconnect" href="https://maps.gstatic.com" />
+        <link rel="dns-prefetch" href="https://maps.gstatic.com" />
+        <link
+          rel="preload"
+          as="image"
+          href="https://firebasestorage.googleapis.com/..."
+        />
       </Head>
       <main className={`flex justify-between scroll-smooth ${inter.className}`}>
         <HomeView products={products} dosens={dosens} sipams={sipams} />

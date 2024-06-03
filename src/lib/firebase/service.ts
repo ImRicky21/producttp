@@ -218,7 +218,6 @@ export async function uploadFile(
     return true;
   }
 }
-
 export async function deleteFile(url: string, callBack: Function) {
   const storageRef = ref(storage, url);
   await deleteObject(storageRef)

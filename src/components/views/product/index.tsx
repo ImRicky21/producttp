@@ -29,6 +29,7 @@ export default function ProductView(props: PropsTypes) {
                   className="rounded-t-lg"
                   src={product.image}
                   alt={product.title}
+                  loading="lazy"
                   width={400}
                   height={300}
                 />
