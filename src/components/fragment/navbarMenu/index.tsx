@@ -42,7 +42,6 @@ export default function NavbarMenu(props: Propstypes) {
       } px-5 sticky top-0 z-50 bg-slate-200 transition-all ease-in-out ${
         isScrolled ? "bg-opacity-80 backdrop-blur-md shadow-md" : "bg-teal-300 "
       }`}
-      data-aos="fade-up"
     >
       <div className=" p-3">
         {
@@ -108,17 +107,17 @@ export default function NavbarMenu(props: Propstypes) {
             !isOpen
               ? "origin-bottom-left rotate-0"
               : "origin-bottom-left rotate-45"
-          }`}
+          } ${isScrolled ? "" : "bg-white"}`}
         ></div>
         <div
           className={`w-8 h-1 bg-black rounded-full m-1 transition ${
             !isOpen ? "origin-bottom-left" : "my-2 opacity-0 "
-          }`}
+          } ${isScrolled ? "" : "bg-white"}`}
         ></div>
         <div
           className={`w-8 h-1 bg-black m-1 rounded-full transition ${
             !isOpen ? "origin-bottom-left" : "origin-bottom-left -rotate-45"
-          }`}
+          } ${isScrolled ? "" : "bg-white"}`}
         ></div>
       </div>
     </nav>

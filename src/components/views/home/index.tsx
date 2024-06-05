@@ -45,7 +45,7 @@ export default function HomeView(props: PropsTypes) {
 
   return (
     <div className="w-full flex flex-col scroll-smooth">
-      <div className="w-full absolute  " data-aos="fade-up">
+      <div className="w-full absolute  ">
         <WaveUpperRight className="fill-teal-300" />
       </div>
 
@@ -62,14 +62,14 @@ export default function HomeView(props: PropsTypes) {
             Teknologi Pendidikan
           </h1>
           <h1
-            className="font-semibold text-justify text-2xl text-slate-950"
+            className="font-semibold md:text-justify text-2xl text-slate-950"
             data-aos="fade-up"
             data-aos-delay="300"
           >
             Fakultas Keguruan dan Ilmu Pendidikan
           </h1>
           <h1
-            className="font-bold text-justify text-2xl text-slate-950"
+            className="font-bold md:text-justify text-2xl text-slate-950"
             data-aos="fade-up"
             data-aos-delay="400"
           >

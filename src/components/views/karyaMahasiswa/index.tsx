@@ -29,7 +29,7 @@ const KaryaMahasiswa: React.FC = () => {
     },
   ];
   return (
-    <div className="p-4">
+    <div className="px-4 mx-7">
       <CarouselWithChildren>
         {data.map((item, index) => {
           // Group items into chunks of 3 for desktop and 2 for mobile
@@ -45,7 +45,7 @@ const KaryaMahasiswa: React.FC = () => {
                   {data.slice(index, index + 3).map((subItem, subIndex) => (
                     <iframe
                       key={subIndex}
-                      className="w-full md:w-1/2 lg:w-1/3" // Adjust width for responsiveness
+                      className="w-full md:w-1/2 lg:w-1/3 rounded-xl  " // Adjust width for responsiveness
                       height="315"
                       src={`https://www.youtube.com/embed/${subItem.link}`}
                       title="YouTube video player"
