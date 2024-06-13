@@ -17,7 +17,7 @@ function Error({ statusCode }) {
             className="hidden md:block absolute top-5 pt-8"
           />
           <h1 className="text-5xl font-bold text-teal-400 uppercase z-30">
-            {`HEHEHE Kode ${statusCode} halaman belum dibikin lagi `}
+            {`HEHEHE Kode ${statusCode} halaman sedang diperbaiki`}
           </h1>
 
           <Image

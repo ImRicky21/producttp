@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import tekpend from "@/../../public/icon/logo-Teknologi-Pendidikan-FKIP-ULM.png";
 import Image from "next/image";
 import BannerTP from "@/../../public/icon/tekepnd-banner.png";
+import { useRouter } from "next/router";
 type Propstypes = {
   lists: Array<{
     id: number;
@@ -20,6 +21,9 @@ export default function NavbarMenu(props: Propstypes) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsSrcolled] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
+  const router = useRouter();
+  const currentPath = router.pathname;
+  const isRootPath = currentPath === "/";
 
   useEffect(() => {
     function handleScrolled() {
@@ -37,11 +41,11 @@ export default function NavbarMenu(props: Propstypes) {
   }, [lists]);
   return (
     <nav
-      className={`flex justify-between ${
+      className={`flex justify-around  w-full ${
         isOpen ? "" : " items-center "
       } px-5 sticky top-0 z-50 bg-slate-200 transition-all ease-in-out ${
         isScrolled ? "bg-opacity-80 backdrop-blur-md shadow-md" : "bg-teal-300 "
-      }`}
+      } ${isRootPath ? "" : "text-black"}`}
     >
       <div className=" p-3">
         {
@@ -81,7 +85,7 @@ export default function NavbarMenu(props: Propstypes) {
                 {list.title}
               </Link>
               {list.sub && list.sub.length > 0 && (
-                <ul className=" z-50 bg-slate-100 shadow-md md:absolute hidden group-hover:flex-col group-hover:flex justify-center rounded-lg p-2">
+                <ul className=" z-50 bg-slate-100 shadow-md md:absolute hidden group-hover:flex-col group-hover:flex text-center rounded-lg p-2">
                   {list.sub.map((sub) => (
                     <li
                       key={sub.title}

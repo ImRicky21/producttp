@@ -61,27 +61,27 @@ const menuNavbar = [
       { title: "Beasiswa", url: "/beasiswa" },
     ],
   },
-  {
-    id: 5,
-    title: "Tri Dharma",
-    url: "/",
-    sub: [
-      {
-        title: "Pengabdian",
-        url: "/pengabdian",
-      },
-      { title: "Penelitian", url: "/penelitian" },
-      { title: "Kerjasama", url: "/kerjasama" },
-      {
-        title: "Luaran",
-        url: "/luaran",
-      },
-      {
-        title: "Jurnal",
-        url: "https://ppjp.ulm.ac.id/journals/index.php/j-instech",
-      },
-    ],
-  },
+  // {
+  //   id: 5,
+  //   title: "Tri Dharma",
+  //   url: "/",
+  //   sub: [
+  //     {
+  //       title: "Pengabdian",
+  //       url: "/pengabdian",
+  //     },
+  //     { title: "Penelitian", url: "/penelitian" },
+  //     { title: "Kerjasama", url: "/kerjasama" },
+  //     {
+  //       title: "Luaran",
+  //       url: "/luaran",
+  //     },
+  //     {
+  //       title: "Jurnal",
+  //       url: "https://ppjp.ulm.ac.id/journals/index.php/j-instech",
+  //     },
+  //   ],
+  // },
   {
     id: 6,
     title: "Survei",
@@ -89,7 +89,7 @@ const menuNavbar = [
     sub: [
       {
         title: "Pemahaman Visi Keilmuan dan Tujuan",
-        url: "/visi-dan-tujuan",
+        url: "/survei-visi-misi",
       },
       {
         title: "Kepuasan Mahasiswa",
@@ -101,7 +101,7 @@ const menuNavbar = [
       },
       {
         title: "Tracer Studi",
-        url: "https://tracerstudy.ulm.ac.id/",
+        url: "/survei-tracerstudy",
       },
       {
         title: "Kepuasan Kerjasama",
@@ -109,16 +109,16 @@ const menuNavbar = [
       },
     ],
   },
-  {
-    id: 7,
-    title: "Akreditasi",
-    url: "/",
-    sub: [
-      { title: "Dokumen Kebijakan", url: "/dokumen-kebijakan" },
-      { title: "AMI", url: "/ami" },
-      { title: "GPM", url: "/gpm" },
-    ],
-  },
+  // {
+  //   id: 7,
+  //   title: "Akreditasi",
+  //   url: "/",
+  //   sub: [
+  //     { title: "Dokumen Kebijakan", url: "/dokumen-kebijakan" },
+  //     { title: "AMI", url: "/ami" },
+  //     { title: "GPM", url: "/gpm" },
+  //   ],
+  // },
 ];
 
 const disableNavbar = ["auth", "admin"];
