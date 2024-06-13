@@ -28,7 +28,7 @@ const menuNavbar = [
     sub: [
       { title: "Identitas Prodi", url: "/identitas-prodi" },
       { title: "Visi Keilmuan Dan Tujuan", url: "/visi-dan-tujuan" },
-      { title: "Sertifikat Akreditasi", url: "/sertifikat-akreditasi" },
+      // { title: "Sertifikat Akreditasi", url: "/sertifikat-akreditasi" },
       { title: "Struktur Organisasi", url: "/struktur-organisasi" },
       { title: "Dosen & Staff", url: "/dosen" },
       { title: "Sarana & Prasarana", url: "/sarana-prasarana" },
@@ -44,10 +44,10 @@ const menuNavbar = [
         title: "Kalender Akademik",
         url: "/kalender-akademik",
       },
-      {
-        title: "SILAMTP",
-        url: "/silamtp",
-      },
+      // {
+      //   title: "SILAMTP",
+      //   url: "/silamtp",
+      // },
     ],
   },
   {
