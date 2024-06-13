@@ -32,6 +32,7 @@ const menuNavbar = [
       { title: "Struktur Organisasi", url: "/struktur-organisasi" },
       { title: "Dosen & Staff", url: "/dosen" },
       { title: "Sarana & Prasarana", url: "/sarana-prasarana" },
+      { title: "Berita/Pengumuman", url: "/product" },
     ],
   },
   {
